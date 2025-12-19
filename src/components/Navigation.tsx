@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import ThemeToggle from "./ThemeToggle";
 
 const Navigation = () => {
   return (
@@ -23,13 +24,16 @@ const Navigation = () => {
             </a>
           </div>
 
-          {/* CTA */}
-          <Link
-            to="/#courses"
-            className="bg-foreground text-background px-5 py-2.5 text-sm font-medium transition-all duration-300 hover:bg-foreground/90 hover:scale-105"
-          >
-            Start Learning
-          </Link>
+          {/* Right side */}
+          <div className="flex items-center gap-4">
+            <ThemeToggle />
+            <Link
+              to="/#courses"
+              className="bg-foreground text-background px-5 py-2.5 text-sm font-medium transition-all duration-300 hover:bg-foreground/90 hover:scale-105"
+            >
+              Start Learning
+            </Link>
+          </div>
         </div>
       </div>
     </nav>
