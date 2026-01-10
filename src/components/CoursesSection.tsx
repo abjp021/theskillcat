@@ -1,4 +1,5 @@
 import CourseCard from "./CourseCard";
+import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 
 const courses = [
   {
@@ -28,11 +29,21 @@ const courses = [
 ];
 
 const CoursesSection = () => {
+  const { ref: headerRef, isVisible: headerVisible } = useScrollAnimation({ threshold: 0.2 });
+  const { ref: gridRef, isVisible: gridVisible } = useScrollAnimation({ threshold: 0.1 });
+
   return (
     <section id="courses" className="py-24 lg:py-32 bg-background">
       <div className="container mx-auto px-6 lg:px-12">
         {/* Section Header */}
-        <div className="max-w-2xl mb-16">
+        <div
+          ref={headerRef}
+          className={`max-w-2xl mb-16 transition-all duration-700 ${
+            headerVisible
+              ? "opacity-100 translate-y-0"
+              : "opacity-0 translate-y-8"
+          }`}
+        >
           <h2 className="font-display font-bold text-3xl lg:text-4xl tracking-tight mb-4">
             Courses
           </h2>
@@ -42,9 +53,24 @@ const CoursesSection = () => {
         </div>
 
         {/* Course Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
-          {courses.map((course) => (
-            <CourseCard key={course.id} {...course} />
+        <div
+          ref={gridRef}
+          className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8"
+        >
+          {courses.map((course, index) => (
+            <div
+              key={course.id}
+              className={`transition-all duration-700 ${
+                gridVisible
+                  ? "opacity-100 translate-y-0"
+                  : "opacity-0 translate-y-12"
+              }`}
+              style={{
+                transitionDelay: gridVisible ? `${index * 100}ms` : "0ms",
+              }}
+            >
+              <CourseCard {...course} />
+            </div>
           ))}
         </div>
       </div>
