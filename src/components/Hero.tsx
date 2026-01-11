@@ -37,7 +37,20 @@ const Hero = () => {
           <div className="animate-fade-up animation-delay-600" style={{ opacity: 0 }}>
             <a
               href="#courses"
-              className="inline-block bg-foreground text-background px-8 py-4 text-sm font-medium tracking-wide transition-all duration-300 hover:scale-105 hover:shadow-lg"
+              onClick={(e) => {
+                e.preventDefault();
+                const element = document.getElementById("courses");
+                if (element) {
+                  const navHeight = 80;
+                  const elementPosition = element.getBoundingClientRect().top;
+                  const offsetPosition = elementPosition + window.pageYOffset - navHeight;
+                  window.scrollTo({
+                    top: offsetPosition,
+                    behavior: "smooth",
+                  });
+                }
+              }}
+              className="inline-block bg-foreground text-background px-8 py-4 text-sm font-medium tracking-wide transition-all duration-300 hover:scale-105 hover:shadow-lg cursor-pointer"
             >
               Explore Courses
             </a>
