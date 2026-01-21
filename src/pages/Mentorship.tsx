@@ -90,20 +90,74 @@ const Mentorship = () => {
               </p>
             </div>
             
-            {/* Right Column - Stats */}
-            <div className="grid grid-cols-2 gap-4">
-              <div className="text-center p-6 border border-border rounded-lg bg-background/50 hover:border-foreground/50 transition-colors">
-                <div className="text-3xl font-display font-bold mb-2">24-48h</div>
-                <div className="text-xs text-muted-foreground uppercase tracking-wider">Response Time</div>
+            {/* Right Column - Stats / Pricing & Focus Areas */}
+            <div className="space-y-4">
+              <div className="grid grid-cols-2 gap-4">
+                <div className="text-center p-6 border border-border rounded-lg bg-background/50 hover:border-foreground/50 transition-colors">
+                  <div className="text-3xl font-display font-bold mb-2">30 min</div>
+                  <div className="text-xs text-muted-foreground uppercase tracking-wider">Session Length</div>
+                </div>
+                <div className="text-center p-6 border border-border rounded-lg bg-background/50 hover:border-foreground/50 transition-colors">
+                  <div className="text-3xl font-display font-bold mb-1">
+                    <span className="line-through text-base opacity-60 mr-1">₹799</span>
+                    <span>₹500</span>
+                  </div>
+                  <div className="text-[11px] text-muted-foreground uppercase tracking-wider">
+                    One flat price per 30-minute session
+                  </div>
+                </div>
               </div>
-              <div className="text-center p-6 border border-border rounded-lg bg-background/50 hover:border-foreground/50 transition-colors">
-                <div className="text-3xl font-display font-bold mb-2">100%</div>
-                <div className="text-xs text-muted-foreground uppercase tracking-wider">Judgment-Free</div>
-              </div>
-              <div className="text-center p-6 border border-border rounded-lg bg-background/50 hover:border-foreground/50 transition-colors col-span-2">
-                <div className="text-3xl font-display font-bold mb-2">Free</div>
-                <div className="text-xs text-muted-foreground uppercase tracking-wider">To Book</div>
-              </div>
+
+              <Card className="border-border bg-background/60">
+                <CardHeader className="pb-3">
+                  <CardTitle className="text-sm font-semibold">
+                    Choose Your Focus Area
+                  </CardTitle>
+                </CardHeader>
+                <CardContent className="space-y-3">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                    <div className="flex flex-col items-start gap-1 rounded-lg border border-dashed border-border/70 px-3 py-2 bg-muted/40">
+                      <span className="text-xs font-medium uppercase tracking-wide text-muted-foreground">
+                        01
+                      </span>
+                      <span className="text-sm font-medium">Resume Review</span>
+                      <span className="text-[11px] text-muted-foreground">
+                        Get detailed feedback on your resume and how to position your experience.
+                      </span>
+                    </div>
+                    <div className="flex flex-col items-start gap-1 rounded-lg border border-dashed border-border/70 px-3 py-2 bg-muted/40">
+                      <span className="text-xs font-medium uppercase tracking-wide text-muted-foreground">
+                        02
+                      </span>
+                      <span className="text-sm font-medium">One-on-One Career Mentorship</span>
+                      <span className="text-[11px] text-muted-foreground">
+                        Talk about direction, transitions, and what next steps make sense for you.
+                      </span>
+                    </div>
+                    <div className="flex flex-col items-start gap-1 rounded-lg border border-dashed border-border/70 px-3 py-2 bg-muted/40">
+                      <span className="text-xs font-medium uppercase tracking-wide text-muted-foreground">
+                        03
+                      </span>
+                      <span className="text-sm font-medium">Mock Interview</span>
+                      <span className="text-[11px] text-muted-foreground">
+                        Practice interviews with honest feedback on your answers and communication.
+                      </span>
+                    </div>
+                    <div className="flex flex-col items-start gap-1 rounded-lg border border-dashed border-border/70 px-3 py-2 bg-muted/40">
+                      <span className="text-xs font-medium uppercase tracking-wide text-muted-foreground">
+                        04
+                      </span>
+                      <span className="text-sm font-medium">Skill Set Analysis</span>
+                      <span className="text-[11px] text-muted-foreground">
+                        Understand your current skills and what to build next for your target role.
+                      </span>
+                    </div>
+                  </div>
+                  <p className="text-[11px] text-muted-foreground">
+                    Pick one focus area for your 30-minute session and mention it when you fill out the booking form.
+                  </p>
+                </CardContent>
+              </Card>
             </div>
           </div>
         </div>
@@ -226,8 +280,11 @@ const Mentorship = () => {
                 Ready to Get Clarity?<br />
                 <span className="text-muted-foreground">Book Your Session</span>
               </h2>
-              <p className="text-muted-foreground mb-8">
+              <p className="text-muted-foreground mb-4">
                 Take the first step. Fill out the form and we'll reach out to schedule your one-on-one session. No pressure- just a conversation that could change your career.
+              </p>
+              <p className="text-sm text-muted-foreground mb-8">
+                All mentorship options are paid 30-minute sessions. Listed price is ₹799, currently available at a discounted price of <span className="font-semibold">₹500</span> per session—no matter which focus area you choose.
               </p>
               
               {/* Quick highlights */}
@@ -235,22 +292,26 @@ const Mentorship = () => {
                 <div className="flex items-start gap-3">
                   <Circle className="w-5 h-5 text-foreground mt-0.5 flex-shrink-0" fill="currentColor" />
                   <div>
-                    <p className="text-sm font-medium">Free to book</p>
-                    <p className="text-xs text-muted-foreground">No commitment required</p>
+                    <p className="text-sm font-medium">Four focused session types</p>
+                    <p className="text-xs text-muted-foreground">
+                      Resume Review, One-on-One Career Mentorship, Mock Interview, Skill Set Analysis.
+                    </p>
                   </div>
                 </div>
                 <div className="flex items-start gap-3">
                   <Circle className="w-5 h-5 text-foreground mt-0.5 flex-shrink-0" fill="currentColor" />
                   <div>
-                    <p className="text-sm font-medium">24-48 hour response</p>
-                    <p className="text-xs text-muted-foreground">We'll get back to you quickly</p>
+                    <p className="text-sm font-medium">Transparent pricing</p>
+                    <p className="text-xs text-muted-foreground">₹799 listed, currently ₹500 per 30-minute session</p>
                   </div>
                 </div>
                 <div className="flex items-start gap-3">
                   <Circle className="w-5 h-5 text-foreground mt-0.5 flex-shrink-0" fill="currentColor" />
                   <div>
-                    <p className="text-sm font-medium">Choose your mentor</p>
-                    <p className="text-xs text-muted-foreground">Pick someone who aligns with your goals</p>
+                    <p className="text-sm font-medium">Tell us what you want to focus on</p>
+                    <p className="text-xs text-muted-foreground">
+                      In the form, mention which focus area you want for your 30-minute session.
+                    </p>
                   </div>
                 </div>
               </div>

@@ -53,8 +53,11 @@ const MentorshipSection = () => {
             <p className="text-muted-foreground text-base lg:text-lg mb-4">
               Feeling lost or uncertain about your next steps? Don't worry- everyone feels that way at some point.
             </p>
-            <p className="text-muted-foreground text-sm lg:text-base mb-6">
-              Get personalized guidance from industry experts. Discuss your career goals, get honest feedback, and create a clear path forward- all in a safe, judgment-free space.
+            <p className="text-muted-foreground text-sm lg:text-base mb-2">
+              Book a focused 30-minute one-on-one session with an industry expert and get personalized guidance on exactly what you need help with.
+            </p>
+            <p className="text-muted-foreground text-xs lg:text-sm mb-6">
+              Standard price: <span className="line-through opacity-70">₹799</span> • Current price: <span className="font-semibold">₹500</span> (per 30-minute session).
             </p>
             <Link to="/mentorship">
               <Button
@@ -169,7 +172,7 @@ const MentorshipSection = () => {
         >
           <div className="inline-block p-8 border-2 border-dashed border-border rounded-2xl bg-muted/30">
             <p className="text-muted-foreground text-sm mb-4 font-medium">
-              💬 No pressure, no judgment- just honest guidance from people who care about your success
+              💬 No pressure, no judgment- just honest guidance from people who care about your success.
             </p>
             <Link to="/mentorship">
               <Button
@@ -181,7 +184,7 @@ const MentorshipSection = () => {
               </Button>
             </Link>
             <p className="text-muted-foreground text-xs mt-4">
-              It's free to book. We'll connect you with the right mentor for your situation.
+              All sessions are 30 minutes. Listed price is ₹799, currently available at a discounted price of ₹500 per session.
             </p>
           </div>
         </div>
