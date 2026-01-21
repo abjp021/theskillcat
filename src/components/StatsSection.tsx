@@ -27,7 +27,7 @@ const StatsSection = () => {
   const { ref, isVisible } = useScrollAnimation({ threshold: 0.2 });
 
   return (
-    <section className="py-16 lg:py-20 bg-background border-y border-border">
+    <section className="py-10 lg:py-14 bg-background border-y border-border">
       <div className="container mx-auto px-6 lg:px-12">
         <div
           ref={ref}

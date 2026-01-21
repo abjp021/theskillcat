@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -59,6 +60,11 @@ const benefits = [
 ];
 
 const Mentorship = () => {
+  // Scroll to top when component mounts
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <main className="min-h-screen bg-background">
       <Navigation />
@@ -284,7 +290,7 @@ const Mentorship = () => {
                 Take the first step. Fill out the form and we'll reach out to schedule your one-on-one session. No pressure- just a conversation that could change your career.
               </p>
               <p className="text-sm text-muted-foreground mb-8">
-                All mentorship options are paid 30-minute sessions. Listed price is ₹799, currently available at a discounted price of <span className="font-semibold">₹500</span> per session—no matter which focus area you choose.
+                All mentorship options are paid 30-minute sessions. Listed price is ₹799, currently available at a discounted price of <span className="font-semibold">₹500</span> per session- no matter which focus area you choose.
               </p>
               
               {/* Quick highlights */}
@@ -365,7 +371,7 @@ const Mentorship = () => {
                   },
                   {
                     step: "3",
-                    title: "Get the Clarity You Need",
+                    title: "Get the Clarity You Need!",
                     description: "Have an honest conversation with your mentor. Ask questions, share your concerns, and walk away with a clearer direction and actionable next steps.",
                   },
                 ].map((item, index) => (

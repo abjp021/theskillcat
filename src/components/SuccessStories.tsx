@@ -32,7 +32,7 @@ const SuccessStories = () => {
   const { ref: gridRef, isVisible: gridVisible } = useScrollAnimation({ threshold: 0.1 });
 
   return (
-    <section id="stories" className="py-24 lg:py-32 bg-muted/30">
+    <section id="stories" className="py-16 lg:py-24 bg-muted/30">
       <div className="container mx-auto px-6 lg:px-12">
         {/* Section Header */}
         <div

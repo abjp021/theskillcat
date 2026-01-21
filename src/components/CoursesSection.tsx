@@ -112,7 +112,7 @@ const CoursesSection = () => {
   const regularCourses = filteredCourses.filter((course) => !course.featured);
 
   return (
-    <section id="courses" className="py-24 lg:py-32 bg-background">
+    <section id="courses" className="py-16 lg:py-20 bg-background">
       <div className="container mx-auto px-6 lg:px-12">
         {/* Section Header */}
         <div

@@ -50,6 +50,12 @@ const Navigation = () => {
             >
               Mentorship
             </Link>
+            <Link
+              to="/blogs"
+              className="link-underline text-sm font-medium"
+            >
+              Blogs
+            </Link>
             <a
               href="#stories"
               onClick={(e) => handleSmoothScroll(e, "stories")}

@@ -37,7 +37,7 @@ const FreeResources = () => {
   const { ref: gridRef, isVisible: gridVisible } = useScrollAnimation({ threshold: 0.1 });
 
   return (
-    <section id="resources" className="py-24 lg:py-32 bg-background">
+    <section id="resources" className="py-16 lg:py-20 bg-background">
       <div className="container mx-auto px-6 lg:px-12">
         {/* Section Header */}
         <div

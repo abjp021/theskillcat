@@ -44,7 +44,7 @@ const FAQSection = () => {
   const { ref: accordionRef, isVisible: accordionVisible } = useScrollAnimation({ threshold: 0.1 });
 
   return (
-    <section id="faq" className="py-24 lg:py-32 bg-background">
+    <section id="faq" className="py-16 lg:py-20 bg-background">
       <div className="container mx-auto px-6 lg:px-12">
         {/* Section Header */}
         <div

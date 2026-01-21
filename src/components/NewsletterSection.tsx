@@ -19,7 +19,7 @@ const NewsletterSection = () => {
   };
 
   return (
-    <section className="py-24 lg:py-32 bg-muted/30 border-y border-border">
+    <section className="py-16 lg:py-20 bg-muted/30 border-y border-border">
       <div className="container mx-auto px-6 lg:px-12">
         <div
           ref={ref}
