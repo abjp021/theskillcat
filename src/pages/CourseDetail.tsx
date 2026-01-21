@@ -29,7 +29,6 @@ interface CourseData {
   originalPrice?: string;
   rating: number;
   reviews: number;
-  students: number;
   nextBatch?: string;
   gains: string[];
   audience: string[];
@@ -67,7 +66,6 @@ const courseData: Record<string, CourseData> = {
     originalPrice: "₹19,999",
     rating: 4.9,
     reviews: 247,
-    students: 1240,
     nextBatch: "March 15, 2024",
     gains: [
       "Master product discovery and validation frameworks",
@@ -206,13 +204,12 @@ const courseData: Record<string, CourseData> = {
   "data-analytics": {
     title: "Data Analytics for Business",
     promise: "Turn raw data into business decisions in 10 weeks.",
-    status: "Live",
+    status: "Upcoming",
     duration: "10 weeks",
     price: "₹12,999",
     originalPrice: "₹17,999",
     rating: 4.8,
     reviews: 189,
-    students: 980,
     nextBatch: "March 20, 2024",
     gains: [
       "Write SQL queries that answer real business questions",
@@ -320,7 +317,6 @@ const courseData: Record<string, CourseData> = {
     originalPrice: "₹19,999",
     rating: 0,
     reviews: 0,
-    students: 0,
     nextBatch: "April 1, 2024",
     gains: [
       "Conduct user research that reveals real needs",
@@ -430,7 +426,6 @@ const courseData: Record<string, CourseData> = {
     originalPrice: "₹14,999",
     rating: 0,
     reviews: 0,
-    students: 0,
     nextBatch: "April 10, 2024",
     gains: [
       "Define your unique professional positioning",
@@ -498,6 +493,346 @@ const courseData: Record<string, CourseData> = {
       "Mock interviews",
       "Salary negotiation guidance",
       "Network introductions",
+      "Lifetime access to materials",
+    ],
+  },
+  "product-management-ai": {
+    title: "Product Management with AI Specialisation",
+    promise: "Think like an AI-first Product Manager. Build AI products that work in the real world.",
+    status: "Live",
+    duration: "2 months",
+    price: "₹19,999",
+    originalPrice: "₹24,999",
+    rating: 4.9,
+    reviews: 156,
+    nextBatch: "March 1, 2024",
+    gains: [
+      "Think like an AI-first Product Manager",
+      "Write AI PRDs that ML teams actually use",
+      "Design ML-powered user journeys",
+      "Work effectively with Data, ML, and Backend teams",
+      "Build AI product case studies for your portfolio",
+      "Speak confidently in PM + AI interviews",
+      "Create portfolio-ready projects",
+    ],
+    audience: [
+      "Product Managers wanting to specialize in AI products",
+      "Aspiring PMs transitioning into AI-first roles",
+      "Founders building AI-powered products",
+      "Technical PMs looking to bridge the AI gap",
+    ],
+    mentors: [
+      {
+        name: "Industry Expert",
+        role: "AI Product Manager, EV & Operations",
+        bio: "Real production PM experience with EV + Operations + AI expertise. Data-driven approach with focus on growth and retention use cases.",
+        linkedin: "#",
+        twitter: "#",
+      },
+    ],
+    curriculum: [
+      {
+        week: 1,
+        title: "AI for Product Managers (Foundation)",
+        topics: [
+          "What is AI, ML, DL (PM perspective only)",
+          "Rule-based systems vs ML systems",
+          "Traditional product vs AI product",
+          "Supervised vs Unsupervised vs Reinforcement Learning (real use cases)",
+          "Where AI makes sense vs where it DOES NOT",
+          "AI myths vs reality (what founders oversell)",
+          "Practical: Analyze 5 real AI products (ChatGPT, Spotify Recommendations, Uber ETA, Amazon Search Ranking, LinkedIn Feed Ranking)",
+          "Assignment: Convert 1 normal product feature → AI-powered version",
+        ],
+      },
+      {
+        week: 2,
+        title: "Data Thinking for PMs (Most Important)",
+        topics: [
+          "What data AI products need: Structured vs Unstructured",
+          "Data lifecycle: Collection → Cleaning → Labeling → Training → Serving",
+          "Training data vs Live production data",
+          "Data bias & data leakage",
+          "Ground truth concept",
+          "Feature engineering (PM level understanding)",
+          "Cold start problem",
+          "Practical: Design dataset requirements for Fraud detection, Recommendation system, Chatbot",
+          "Assignment: Create Data Requirement Document (DRD) for one AI use case",
+        ],
+      },
+      {
+        week: 3,
+        title: "AI Product Discovery & Use Case Selection",
+        topics: [
+          "Identifying AI opportunities in Operations, Growth, CX, Retention, Revenue",
+          "ROI vs Feasibility matrix for AI features",
+          "Build vs Buy vs API decision framework",
+          "When NOT to use AI",
+          "AI feasibility checklist: Data availability, Volume, Latency requirement, Accuracy tolerance",
+          "GenAI Topics: How LLMs work (PM level), Prompt engineering for products, RAG (Retrieval Augmented Generation)",
+          "Fine-tuning vs prompt tuning, Hallucination mitigation, Guardrails & safety layers, Token costs & pricing strategy",
+          "Practical: Build chatbot PRD with Context injection, Memory handling, Fallback flows",
+          "Assignment: Prioritize 5 AI ideas using Impact × Effort × Risk matrix",
+        ],
+      },
+      {
+        week: 4,
+        title: "AI PRDs & Product Design",
+        topics: [
+          "How AI PRD differs from normal PRD",
+          "Key AI PRD sections: Prediction target, Confidence thresholds, Fallback logic, Explainability requirements, Human-in-the-loop flows",
+          "UX for AI: Showing confidence scores, Handling wrong predictions, User trust design",
+          "Practical: Write AI PRD for Resume screening tool, Smart support chatbot, Fraud detection dashboard",
+          "Assignment: Full AI PRD submission + review",
+        ],
+      },
+      {
+        week: 5,
+        title: "Working with ML Teams (Delivery Phase)",
+        topics: [
+          "ML development lifecycle: Problem framing, Model training, Validation, Deployment",
+          "How to talk to data scientists",
+          "Common conflicts: Accuracy vs speed, MVP vs perfection",
+          "Understanding metrics: Precision, Recall, F1 score, ROC",
+          "Offline vs Online testing",
+          "Practical: Simulate sprint planning with ML team",
+          "Assignment: Convert business problem → ML problem statement",
+        ],
+      },
+      {
+        week: 6,
+        title: "AI Metrics, Monitoring & Iteration",
+        topics: [
+          "Business metrics vs Model metrics",
+          "AI-specific monitoring: Data drift, Concept drift, Model decay",
+          "Retraining strategies",
+          "Feedback loops",
+          "Shadow mode testing",
+          "Practical: Build KPI framework for Recommendation engine, Chatbot, Fraud model",
+          "Assignment: Design AI dashboard metric framework",
+        ],
+      },
+      {
+        week: 7,
+        title: "AI Ethics, Privacy & Regulation (Career Gold)",
+        topics: [
+          "Bias & fairness in AI",
+          "Hallucinations in LLMs",
+          "Data privacy (India DPDP Act basics)",
+          "Consent management",
+          "Explainable AI",
+          "Responsible AI principles",
+          "Practical: Case study - OpenAI lawsuits, Amazon biased hiring model, Facial recognition bans",
+          "Assignment: Risk assessment document for AI product",
+        ],
+      },
+      {
+        week: 8,
+        title: "Portfolio Project + Interview Prep",
+        topics: [
+          "Capstone Project Options: AI Resume Screener, EV Charger Failure Predictor, AI Customer Support Bot, Recommendation Engine, Fraud Detection System, AI Hiring Tool",
+          "Deliverables: Problem statement, AI PRD, Data flow design, Metrics framework, Go-to-market plan, Demo prototype (Figma)",
+          "Career Modules: How to write AI PM resume, LinkedIn personal branding for AI PM, How to transition from PM → AI PM, Salary negotiation positioning",
+          "Bonus: AI Tools for PMs - ChatGPT for PRDs, Claude for research, Notion AI, Figma AI, Auto analytics tools",
+        ],
+      },
+    ],
+    skills: [
+      "AI Product Management",
+      "AI PRDs",
+      "ML Product Design",
+      "Data Thinking",
+      "GenAI Products",
+      "AI Ethics",
+      "ML Metrics",
+      "AI Use Case Selection",
+    ],
+    testimonials: [],
+    highlights: [
+      "Real production PM experience with EV + Operations + AI angle",
+      "Data-driven approach with Growth + Retention use cases",
+      "AI Product Management – Real Industry Playbook (Not Academic AI)",
+      "Portfolio-ready capstone projects",
+      "AI Tools for PMs: ChatGPT for PRDs, Claude for research, Notion AI, Figma AI",
+      "Career transition support: Resume writing, LinkedIn branding, Interview prep",
+      "Lifetime access to materials",
+    ],
+  },
+  "technical-product-manager": {
+    title: "Technical Product Manager",
+    promise: "Production-Ready Technical Product Manager Bootcamp. No Coding. Real Systems Thinking.",
+    status: "Live",
+    duration: "2 months",
+    price: "₹19,999",
+    originalPrice: "₹24,999",
+    rating: 4.8,
+    reviews: 142,
+    nextBatch: "March 1, 2024",
+    gains: [
+      "Read backend flows confidently",
+      "Write technical PRDs that engineers actually use",
+      "Design APIs & data flows",
+      "Work deeply with engineers",
+      "Debug production issues",
+      "Handle scalability & reliability discussions",
+      "Crack Technical PM interviews",
+      "Build portfolio system case studies",
+    ],
+    audience: [
+      "Product Managers wanting to become Technical PMs",
+      "Aspiring TPMs transitioning from other roles",
+      "PMs working with technical products",
+      "Founders building technical products",
+    ],
+    mentors: [
+      {
+        name: "Industry Expert",
+        role: "Technical Product Manager, Infra + Ops",
+        bio: "Real production issues experience. Infra + ops expertise. Data-heavy PM background with API + dashboard exposure.",
+        linkedin: "#",
+        twitter: "#",
+      },
+    ],
+    curriculum: [
+      {
+        week: 1,
+        title: "Tech Mindset for Product Managers",
+        topics: [
+          "What is a Technical PM really?",
+          "TPM vs PM vs Engineering Manager",
+          "How tech products differ from consumer apps",
+          "Understanding: Frontend vs Backend, Web vs Mobile, Monolith vs Microservices",
+          "SDLC overview: Requirements → Dev → QA → Deploy → Monitor",
+          "Practical: Map architecture of Food delivery app, Payment gateway, EV charging system (our strength)",
+          "Assignment: Draw high-level architecture of any app",
+        ],
+      },
+      {
+        week: 2,
+        title: "APIs, Backend & Integrations (Core TPM Skill)",
+        topics: [
+          "What is REST API",
+          "HTTP methods (GET, POST, PUT, DELETE)",
+          "Status codes (200, 400, 401, 500)",
+          "Headers, auth tokens, rate limits",
+          "Webhooks",
+          "Third-party integrations",
+          "Tools: Postman hands-on, API testing",
+          "Practical: Test sample APIs, Create mock API collection, Understand request/response mapping",
+          "Assignment: Design API contract for one feature",
+        ],
+      },
+      {
+        week: 3,
+        title: "Databases, Data Flows & Event Tracking",
+        topics: [
+          "SQL vs NoSQL (PM perspective)",
+          "Tables, collections, schemas",
+          "Indexing basics",
+          "Data pipelines: App → Backend → DB → Analytics",
+          "Event tracking design",
+          "Logging vs analytics events",
+          "Roadmap building",
+          "Opportunity solution trees",
+          "Impact vs Effort",
+          "RICE, MoSCoW",
+          "Stakeholder alignment",
+          "Tradeoff decisions",
+          "Practical: Design schema for Orders system, Wallet system, Session tracking system",
+          "Assignment: Create data flow diagram",
+        ],
+      },
+      {
+        week: 4,
+        title: "System Design for PMs",
+        topics: [
+          "System design basics: Load, Traffic, Latency",
+          "Caching",
+          "Queues (Kafka, RabbitMQ conceptually)",
+          "CDN",
+          "Horizontal vs vertical scaling",
+          "Single point of failure",
+          "Practical: Design architecture for Chat application, Booking platform, Ride-hailing app",
+          "Assignment: High-level system design document",
+        ],
+      },
+      {
+        week: 5,
+        title: "Product Delivery, Sprints & Engineering Workflows",
+        topics: [
+          "Agile deep dive (real world)",
+          "Writing technical user stories",
+          "Acceptance criteria",
+          "Story points",
+          "Sprint planning",
+          "Release management",
+          "Feature flags",
+          "Tools: Jira workflows, Backlog grooming",
+          "Practical: Break PRD → Engineering tasks",
+          "Assignment: Create sprint plan for one feature",
+        ],
+      },
+      {
+        week: 6,
+        title: "Production, Debugging & Incident Handling (Gold Module)",
+        topics: [
+          "Production environments: Dev, Staging, Prod",
+          "Logs reading",
+          "Error codes understanding",
+          "Monitoring tools (Datadog, Grafana concepts)",
+          "Incident response: Root cause analysis, Postmortems, Downtime handling",
+          "North star metric, Funnel metrics, Retention metrics",
+          "Experiment design, A/B testing",
+          "Practical: Analyze sample incident logs, Create RCA document",
+          "Assignment: Incident playbook creation",
+        ],
+      },
+      {
+        week: 7,
+        title: "Security, Performance & Reliability",
+        topics: [
+          "API security basics: OAuth, JWT",
+          "Data privacy basics",
+          "Performance optimization: Response time, Payload size",
+          "Uptime metrics: SLA, SLO",
+          "SLAs with vendors",
+          "Rate limiting",
+          "Practical: Design security checklist for app",
+          "Assignment: Reliability framework design",
+        ],
+      },
+      {
+        week: 8,
+        title: "Tech PM Interview + Portfolio Project",
+        topics: [
+          "Capstone Projects (Choose one): Payment system design, Notification system, Wallet system, Order management system, Ride matching system, Charging station management system (our strength)",
+          "Deliverables: System architecture, API design, PRD, Data flow, Scaling plan, Monitoring KPIs, Product strategy, Roadmap, Metrics plan, Go-to-market",
+          "Bonus: Tools Mastery - Postman advanced, Swagger, Jira advanced workflows, Figma handoff to devs",
+          "Career Modules: Tech PM resume writing, Interview prep - System design rounds, API questions, Scenario questions, How to move from PM → TPM, Case study storytelling",
+        ],
+      },
+    ],
+    skills: [
+      "Technical PRDs",
+      "API Design",
+      "System Design",
+      "Backend Flows",
+      "Production Debugging",
+      "Incident Handling",
+      "Jira & Agile",
+      "Data Flows",
+    ],
+    testimonials: [],
+    highlights: [
+      "Production-Ready Technical Product Manager Bootcamp",
+      "No Coding. Real Systems Thinking.",
+      "Real production issues experience",
+      "Infra + ops expertise",
+      "Data-heavy PM background with API + dashboard exposure",
+      "EV charging system expertise (our strength)",
+      "Portfolio-ready system case studies",
+      "Tech PM interview prep: System design, API questions, Scenario questions",
+      "Career transition support: Resume writing, Interview prep, Role transitions",
       "Lifetime access to materials",
     ],
   },
@@ -571,12 +906,6 @@ const CourseDetail = () => {
                     </span>
                   </div>
                 )}
-                <div className="flex items-center gap-2">
-                  <Users className="w-5 h-5 text-muted-foreground" />
-                  <span className="text-muted-foreground">
-                    {course.students.toLocaleString()}+ students
-                  </span>
-                </div>
                 <div className="flex items-center gap-2">
                   <Clock className="w-5 h-5 text-muted-foreground" />
                   <span className="text-muted-foreground">{course.duration}</span>
@@ -930,10 +1259,6 @@ const CourseDetail = () => {
                       <div className="flex items-center gap-1">
                         <Clock className="w-4 h-4" />
                         {relatedCourse.duration}
-                      </div>
-                      <div className="flex items-center gap-1">
-                        <Users className="w-4 h-4" />
-                        {relatedCourse.students.toLocaleString()}+ students
                       </div>
                     </div>
                   </CardHeader>

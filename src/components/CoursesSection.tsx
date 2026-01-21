@@ -22,6 +22,32 @@ interface Course {
 
 const courses: Course[] = [
   {
+    id: "product-management-ai",
+    title: "Product Management with AI Specialisation",
+    outcome: "Think like an AI-first Product Manager. Build AI products that work in the real world. Real industry playbook, not academic AI.",
+    status: "Live",
+    duration: "2 months",
+    price: "₹19,999",
+    rating: 4.9,
+    students: 892,
+    skills: ["AI Product Management", "AI PRDs", "ML Product Design", "Data Thinking", "GenAI Products"],
+    featured: true,
+    category: "Product",
+  },
+  {
+    id: "technical-product-manager",
+    title: "Technical Product Manager",
+    outcome: "Production-Ready Technical Product Manager Bootcamp. No Coding. Real Systems Thinking. Read backend flows, design APIs, debug production issues.",
+    status: "Live",
+    duration: "2 months",
+    price: "₹19,999",
+    rating: 4.8,
+    students: 756,
+    skills: ["Technical PRDs", "API Design", "System Design", "Backend Flows", "Production Debugging"],
+    featured: true,
+    category: "Product",
+  },
+  {
     id: "product-management",
     title: "Product Management Fundamentals",
     outcome: "Go from idea to shipped product with frameworks used by top PMs at Google, Meta, and Stripe.",
@@ -31,14 +57,14 @@ const courses: Course[] = [
     rating: 4.9,
     students: 1240,
     skills: ["Product Strategy", "PRDs", "Prioritization", "User Research"],
-    featured: true,
+    featured: false,
     category: "Product",
   },
   {
     id: "data-analytics",
     title: "Data Analytics for Business",
     outcome: "Turn raw data into decisions. Master SQL, Python, and data storytelling for real business impact.",
-    status: "Live",
+    status: "Upcoming",
     duration: "10 weeks",
     price: "₹12,999",
     rating: 4.8,
@@ -150,7 +176,7 @@ const CoursesSection = () => {
               {featuredCourses.map((course, index) => (
                 <div
                   key={course.id}
-                  className={`transition-all duration-700 ${
+                  className={`transition-all duration-700 h-full ${
                     gridVisible
                       ? "opacity-100 translate-y-0"
                       : "opacity-0 translate-y-12"
@@ -178,7 +204,7 @@ const CoursesSection = () => {
               {regularCourses.map((course, index) => (
                 <div
                   key={course.id}
-                  className={`transition-all duration-700 ${
+                  className={`transition-all duration-700 h-full ${
                     gridVisible
                       ? "opacity-100 translate-y-0"
                       : "opacity-0 translate-y-12"
