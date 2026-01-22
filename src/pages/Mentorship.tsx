@@ -3,7 +3,7 @@ import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
-import MentorshipBookingForm from "@/components/MentorshipBookingForm";
+import CalendlyBooking from "@/components/CalendlyBooking";
 import { Linkedin, Twitter, CheckCircle2, MessageSquare, Target, Users, Sparkles, ArrowRight, Circle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
@@ -160,7 +160,7 @@ const Mentorship = () => {
                     </div>
                   </div>
                   <p className="text-[11px] text-muted-foreground">
-                    Pick one focus area for your 30-minute session and mention it when you fill out the booking form.
+                    Pick one focus area for your 30-minute session and mention it when you book your session.
                   </p>
                 </CardContent>
               </Card>
@@ -287,7 +287,7 @@ const Mentorship = () => {
                 <span className="text-muted-foreground">Book Your Session</span>
               </h2>
               <p className="text-muted-foreground mb-4">
-                Take the first step. Fill out the form and we'll reach out to schedule your one-on-one session. No pressure- just a conversation that could change your career.
+                Take the first step. Choose your preferred date and time below to book your one-on-one session instantly. No pressure- just a conversation that could change your career.
               </p>
               <p className="text-sm text-muted-foreground mb-8">
                 All mentorship options are paid 30-minute sessions. Listed price is ₹799, currently available at a discounted price of <span className="font-semibold">₹500</span> per session- no matter which focus area you choose.
@@ -316,27 +316,21 @@ const Mentorship = () => {
                   <div>
                     <p className="text-sm font-medium">Tell us what you want to focus on</p>
                     <p className="text-xs text-muted-foreground">
-                      In the form, mention which focus area you want for your 30-minute session.
+                      When booking, mention which focus area you want for your 30-minute session in the booking notes.
                     </p>
                   </div>
                 </div>
               </div>
             </div>
 
-            {/* Right Column - Form */}
+            {/* Right Column - Calendly Booking */}
             <div>
               <Card className="border-border">
                 <CardHeader>
-                  <CardTitle>Mentorship Request</CardTitle>
+                  <CardTitle>Book Your Session</CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <MentorshipBookingForm
-                    mentors={mentors.map((m) => ({
-                      id: m.id,
-                      name: m.name,
-                      role: m.role,
-                    }))}
-                  />
+                  <CalendlyBooking />
                 </CardContent>
               </Card>
             </div>
@@ -361,13 +355,13 @@ const Mentorship = () => {
                 {[
                   {
                     step: "1",
-                    title: "Share Your Story",
-                    description: "Fill out a simple form- tell us about yourself, your current situation, and what's on your mind. Don't worry about having all the answers; that's what we're here for.",
+                    title: "Book Your Session",
+                    description: "Choose your preferred date and time using the calendar below. Pick a slot that works for you- it only takes a minute to book.",
                   },
                   {
                     step: "2",
-                    title: "We'll Connect With You",
-                    description: "Within 24-48 hours, we'll reach out to schedule a time that works for you. No pressure, no sales pitch- just a genuine conversation.",
+                    title: "Get Instant Confirmation",
+                    description: "Receive immediate confirmation and calendar invites. We'll send you a reminder before your session so you don't miss it.",
                   },
                   {
                     step: "3",
