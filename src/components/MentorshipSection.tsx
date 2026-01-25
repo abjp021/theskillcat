@@ -21,10 +21,9 @@ const featuredMentors = [
 
 const MentorshipSection = () => {
   const { ref: headerRef, isVisible: headerVisible } = useScrollAnimation({ threshold: 0.2 });
-  const { ref: gridRef, isVisible: gridVisible } = useScrollAnimation({ threshold: 0.1 });
 
   return (
-    <section id="mentorship" className="py-24 lg:py-32 bg-background relative overflow-hidden">
+    <section id="mentorship" className="py-12 lg:py-16 bg-background relative overflow-hidden">
       {/* Decorative background elements */}
       <div className="absolute top-0 right-0 w-96 h-96 bg-foreground/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" />
       <div className="absolute bottom-0 left-0 w-96 h-96 bg-foreground/5 rounded-full blur-3xl translate-y-1/2 -translate-x-1/2" />
@@ -33,7 +32,7 @@ const MentorshipSection = () => {
         {/* Parallel Layout: Content Left, Visual Right */}
         <div
           ref={headerRef}
-          className={`grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-start mb-16 transition-all duration-700 ${
+          className={`grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-start transition-all duration-700 ${
             headerVisible
               ? "opacity-100 translate-y-0"
               : "opacity-0 translate-y-8"
@@ -41,19 +40,19 @@ const MentorshipSection = () => {
         >
           {/* Left Column - Main Content */}
           <div className="lg:sticky lg:top-24">
-            <div className="inline-flex items-center gap-2 mb-4">
+            <div className="inline-flex items-center gap-2 mb-3">
               <Sparkles className="w-5 h-5 text-foreground" />
               <span className="text-sm font-medium text-muted-foreground uppercase tracking-wider">
                 One-on-One Support
               </span>
             </div>
-            <h2 className="font-display font-bold text-3xl lg:text-4xl tracking-tight mb-4">
+            <h2 className="font-display font-bold text-3xl lg:text-4xl tracking-tight mb-3">
               Unsure About Your Career? We've Got You Covered
             </h2>
-            <p className="text-muted-foreground text-base lg:text-lg mb-4">
+            <p className="text-muted-foreground text-base lg:text-lg mb-3">
               Feeling lost or uncertain about your next steps? Don't worry- everyone feels that way at some point.
             </p>
-            <p className="text-muted-foreground text-sm lg:text-base mb-6">
+            <p className="text-muted-foreground text-sm lg:text-base mb-4">
               Get personalized guidance from industry experts. Discuss your career goals, get honest feedback, and create a clear path forward- all in a safe, judgment-free space.
             </p>
             <Link to="/mentorship">
@@ -68,16 +67,16 @@ const MentorshipSection = () => {
           </div>
           
           {/* Right Column - Benefits & Mentors in Parallel */}
-          <div className="space-y-8">
+          <div className="space-y-6">
             {/* Benefits - Vertical Stack */}
-            <div className="space-y-4">
-              <div className="group p-6 border border-border rounded-lg bg-background hover:border-foreground/50 transition-all duration-300 hover:shadow-lg">
-                <div className="flex items-start gap-4">
-                  <div className="w-12 h-12 rounded-xl bg-foreground text-background flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform">
-                    <MessageSquare className="w-6 h-6" />
+            <div className="space-y-3">
+              <div className="group p-4 border border-border rounded-lg bg-background hover:border-foreground/50 transition-all duration-300 hover:shadow-lg">
+                <div className="flex items-start gap-3">
+                  <div className="w-10 h-10 rounded-xl bg-foreground text-background flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform">
+                    <MessageSquare className="w-5 h-5" />
                   </div>
                   <div>
-                    <h3 className="font-display font-semibold text-lg mb-2">Personalized Guidance</h3>
+                    <h3 className="font-display font-semibold text-base mb-1">Personalized Guidance</h3>
                     <p className="text-muted-foreground text-sm">
                       No one-size-fits-all advice. Get tailored guidance that fits your unique situation.
                     </p>
@@ -85,13 +84,13 @@ const MentorshipSection = () => {
                 </div>
               </div>
 
-              <div className="group p-6 border border-border rounded-lg bg-background hover:border-foreground/50 transition-all duration-300 hover:shadow-lg">
-                <div className="flex items-start gap-4">
-                  <div className="w-12 h-12 rounded-xl bg-foreground text-background flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform">
-                    <Target className="w-6 h-6" />
+              <div className="group p-4 border border-border rounded-lg bg-background hover:border-foreground/50 transition-all duration-300 hover:shadow-lg">
+                <div className="flex items-start gap-3">
+                  <div className="w-10 h-10 rounded-xl bg-foreground text-background flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform">
+                    <Target className="w-5 h-5" />
                   </div>
                   <div>
-                    <h3 className="font-display font-semibold text-lg mb-2">Career Clarity</h3>
+                    <h3 className="font-display font-semibold text-base mb-1">Career Clarity</h3>
                     <p className="text-muted-foreground text-sm">
                       Stop second-guessing yourself. Get clarity on your career direction.
                     </p>
@@ -99,13 +98,13 @@ const MentorshipSection = () => {
                 </div>
               </div>
 
-              <div className="group p-6 border border-border rounded-lg bg-background hover:border-foreground/50 transition-all duration-300 hover:shadow-lg">
-                <div className="flex items-start gap-4">
-                  <div className="w-12 h-12 rounded-xl bg-foreground text-background flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform">
-                    <Users className="w-6 h-6" />
+              <div className="group p-4 border border-border rounded-lg bg-background hover:border-foreground/50 transition-all duration-300 hover:shadow-lg">
+                <div className="flex items-start gap-3">
+                  <div className="w-10 h-10 rounded-xl bg-foreground text-background flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform">
+                    <Users className="w-5 h-5" />
                   </div>
                   <div>
-                    <h3 className="font-display font-semibold text-lg mb-2">A Safe Space</h3>
+                    <h3 className="font-display font-semibold text-base mb-1">A Safe Space</h3>
                     <p className="text-muted-foreground text-sm">
                       Ask any question, share your doubts- no judgment, just support.
                     </p>
@@ -116,10 +115,10 @@ const MentorshipSection = () => {
 
             {/* Featured Mentors - Vertical Stack */}
             <div>
-              <h3 className="font-display font-semibold text-sm text-muted-foreground uppercase tracking-wider mb-4">
+              <h3 className="font-display font-semibold text-sm text-muted-foreground uppercase tracking-wider mb-3">
                 Featured Mentors
               </h3>
-              <div className="space-y-4">
+              <div className="space-y-3">
                 {featuredMentors.map((mentor, index) => (
                   <Card
                     key={index}
@@ -158,33 +157,6 @@ const MentorshipSection = () => {
           </div>
         </div>
 
-        {/* CTA - Full Width */}
-        <div
-          ref={gridRef}
-          className={`text-center transition-all duration-700 ${
-            gridVisible
-              ? "opacity-100 translate-y-0"
-              : "opacity-0 translate-y-12"
-          }`}
-        >
-          <div className="inline-block p-8 border-2 border-dashed border-border rounded-2xl bg-muted/30">
-            <p className="text-muted-foreground text-sm mb-4 font-medium">
-              💬 No pressure, no judgment- just honest guidance from people who care about your success
-            </p>
-            <Link to="/mentorship">
-              <Button
-                size="lg"
-                className="bg-foreground text-background hover:opacity-90 group"
-              >
-                Book a Mentorship Session
-                <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
-              </Button>
-            </Link>
-            <p className="text-muted-foreground text-xs mt-4">
-              It's free to book. We'll connect you with the right mentor for your situation.
-            </p>
-          </div>
-        </div>
       </div>
     </section>
   );

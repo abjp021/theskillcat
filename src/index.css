@@ -187,6 +187,24 @@
     }
   }
 
+  @keyframes bounce-subtle {
+    0%, 100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(8px);
+    }
+  }
+
+  @keyframes float {
+    0%, 100% {
+      transform: translateY(0px);
+    }
+    50% {
+      transform: translateY(-8px);
+    }
+  }
+
   .animate-draw {
     animation: draw 2s ease-out forwards;
   }
@@ -201,6 +219,10 @@
 
   .animate-fade-in {
     animation: fade-in 0.6s ease-out forwards;
+  }
+
+  .animate-bounce {
+    animation: bounce-subtle 2s ease-in-out infinite;
   }
 
   .animation-delay-200 {

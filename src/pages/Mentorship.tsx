@@ -1,10 +1,12 @@
+import { useState } from "react";
+import { Link } from "react-router-dom";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Separator } from "@/components/ui/separator";
-import MentorshipBookingForm from "@/components/MentorshipBookingForm";
-import { Linkedin, Twitter, CheckCircle2, MessageSquare, Target, Users, Sparkles, ArrowRight, Circle } from "lucide-react";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Linkedin, Twitter, CheckCircle2, Sparkles, ArrowRight, Star, Calendar } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { CALENDLY_URL } from "@/lib/constants";
 
 interface Mentor {
   id: string;
@@ -15,6 +17,27 @@ interface Mentor {
   linkedin?: string;
   twitter?: string;
   available: boolean;
+  calendlyUrl?: string;
+}
+
+interface IncludedService {
+  name: string;
+  quantity: number;
+  type: string;
+}
+
+interface Service {
+  id: string;
+  title: string;
+  category: string;
+  type: "1:1 Call" | "Digital Product" | "Package" | "Priority DM" | "Courses";
+  description?: string;
+  duration?: string;
+  price: number;
+  originalPrice?: number;
+  rating?: number;
+  includedServices?: IncludedService[];
+  bestDeal?: boolean;
 }
 
 const mentors: Mentor[] = [
@@ -27,6 +50,7 @@ const mentors: Mentor[] = [
     linkedin: "#",
     twitter: "#",
     available: true,
+    calendlyUrl: CALENDLY_URL,
   },
   {
     id: "tech-pm-expert",
@@ -37,299 +61,383 @@ const mentors: Mentor[] = [
     linkedin: "#",
     twitter: "#",
     available: true,
+    calendlyUrl: CALENDLY_URL,
   },
 ];
 
-const benefits = [
+const services: Service[] = [
   {
-    icon: MessageSquare,
-    title: "A Safe Space to Share",
-    description: "Feeling uncertain? Share your doubts, fears, and questions in a judgment-free environment. Our mentors understand- they've been there too.",
+    id: "career-clarity-session",
+    title: "Career Clarity Session",
+    category: "Video meeting. 45 mins",
+    type: "1:1 Call",
+    description: "Get clarity on your career path and next steps",
+    price: 750,
   },
   {
-    icon: Target,
-    title: "Get Clear Direction",
-    description: "Stop feeling lost. Get a clear roadmap for your career with actionable steps tailored to your unique situation and goals.",
+    id: "resume-review",
+    title: "Resume Review + LinkedIn Optimization",
+    category: "Video meeting. 45 mins",
+    type: "1:1 Call",
+    description: "Find your next job with a perfect resume and LinkedIn",
+    price: 750,
   },
   {
-    icon: Users,
-    title: "Learn from Real Experience",
-    description: "Our mentors have navigated career transitions, made tough decisions, and built successful careers. Learn from their real-world experience.",
+    id: "resume-drafting",
+    title: "Resume Drafting",
+    category: "Video meeting. 30 mins",
+    type: "1:1 Call",
+    price: 1200,
+    originalPrice: 1500,
+  },
+  {
+    id: "linkedin-optimization",
+    title: "LinkedIn Optimization",
+    category: "Video meeting. 20 mins",
+    type: "1:1 Call",
+    description: "Your LinkedIn is your sales page! Optimize it :)",
+    price: 400,
+  },
+  {
+    id: "pm-roadmap",
+    title: "Transitioning to PM - Roadmap and Resources",
+    category: "Digital Product",
+    type: "Digital Product",
+    description: "Step by Step Roadmap and Resources",
+    price: 50,
+    originalPrice: 100,
+    rating: 4.7,
+  },
+  {
+    id: "linkedin-guide",
+    title: "LinkedIn Optimization for job hunting!",
+    category: "Digital Product",
+    type: "Digital Product",
+    description: "Your LinkedIn is the gateway for your new role!",
+    price: 50,
+    originalPrice: 199,
+  },
+  {
+    id: "mentorship-package-30",
+    title: "Mentorship Package - 30 Minutes",
+    category: "Package",
+    type: "Package",
+    description: "Get guidance for your Career, Mock Interviews etc.",
+    includedServices: [
+      { name: "Career guidance Session: Time to upskill", quantity: 1, type: "Video Meeting" },
+      { name: "Mock interview: 30 mins", quantity: 1, type: "Video Meeting" },
+      { name: "1:1 Mentorship", quantity: 1, type: "Video Meeting" },
+    ],
+    price: 2100,
+  },
+  {
+    id: "interview-prep-package",
+    title: "Get Ready for the Interview!",
+    category: "Package",
+    type: "Package",
+    includedServices: [
+      { name: "Resume review", quantity: 1, type: "Video Meeting" },
+      { name: "Career guidance Session: Time to upskill", quantity: 1, type: "Video Meeting" },
+      { name: "Interview prep & tips", quantity: 1, type: "Video Meeting" },
+    ],
+    price: 1200,
+    bestDeal: true,
+  },
+  {
+    id: "mentorship-package-weekly",
+    title: "Mentorship Package",
+    category: "Package",
+    type: "Package",
+    description: "Meet me twice weekly and let me mentor you personally :)",
+    includedServices: [
+      { name: "1:1 Mentorship", quantity: 8, type: "Video Meeting" },
+    ],
+    price: 3600,
+    originalPrice: 4800,
   },
 ];
 
 const Mentorship = () => {
+  const [selectedTab, setSelectedTab] = useState("All");
+
+  const filteredServices = selectedTab === "All" 
+    ? services 
+    : services.filter(service => service.type === selectedTab);
+
   return (
     <main className="min-h-screen bg-background">
       <Navigation />
 
-      {/* Hero Section - Parallel Layout */}
-      <section className="pt-32 lg:pt-40 pb-20 lg:pb-28 border-b border-border relative overflow-hidden">
-        <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-foreground/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" />
-        <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-foreground/5 rounded-full blur-3xl translate-y-1/2 -translate-x-1/2" />
-        
-        <div className="container mx-auto px-6 lg:px-12 relative z-10">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-            {/* Left Column - Content */}
-            <div>
-              <div className="inline-flex items-center gap-2 mb-6">
-                <Sparkles className="w-5 h-5 text-foreground" />
-                <span className="text-sm font-medium text-muted-foreground uppercase tracking-wider">
-                  One-on-One Mentorship
-                </span>
-              </div>
-              <h1 className="font-display font-bold text-4xl sm:text-5xl lg:text-6xl tracking-tight mb-6">
-                Unsure About Your Career?<br />
-                <span className="text-muted-foreground">We've Got You Covered</span>
-              </h1>
-              <p className="text-lg lg:text-xl text-muted-foreground mb-4">
-                Feeling lost, confused, or stuck? You're not alone. Every successful person has been where you are right now.
-              </p>
-              <p className="text-base lg:text-lg text-muted-foreground mb-8">
-                Book a one-on-one session with our mentors and get the clarity, confidence, and direction you need. No judgment, just honest guidance.
-              </p>
-            </div>
-            
-            {/* Right Column - Stats */}
-            <div className="grid grid-cols-2 gap-4">
-              <div className="text-center p-6 border border-border rounded-lg bg-background/50 hover:border-foreground/50 transition-colors">
-                <div className="text-3xl font-display font-bold mb-2">24-48h</div>
-                <div className="text-xs text-muted-foreground uppercase tracking-wider">Response Time</div>
-              </div>
-              <div className="text-center p-6 border border-border rounded-lg bg-background/50 hover:border-foreground/50 transition-colors">
-                <div className="text-3xl font-display font-bold mb-2">100%</div>
-                <div className="text-xs text-muted-foreground uppercase tracking-wider">Judgment-Free</div>
-              </div>
-              <div className="text-center p-6 border border-border rounded-lg bg-background/50 hover:border-foreground/50 transition-colors col-span-2">
-                <div className="text-3xl font-display font-bold mb-2">Free</div>
-                <div className="text-xs text-muted-foreground uppercase tracking-wider">To Book</div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Parallel Layout: Benefits Left, Mentors Right */}
-      <section className="py-16 lg:py-24 border-b border-border">
+      {/* Main Content - 40:60 Ratio Layout */}
+      <section className="pt-32 lg:pt-40 pb-16 lg:pb-24">
         <div className="container mx-auto px-6 lg:px-12">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16">
-            {/* Left Column - Benefits */}
-            <div>
-              <h2 className="font-display font-bold text-2xl lg:text-3xl tracking-tight mb-8">
-                Why Book a Mentorship Session?
-              </h2>
-              <div className="space-y-6">
-                {benefits.map((benefit, index) => {
-                  const Icon = benefit.icon;
-                  return (
-                    <div key={index} className="group">
-                      <div className="flex items-start gap-4 p-6 border border-border rounded-lg hover:border-foreground/50 transition-all duration-300 hover:shadow-lg">
-                        <div className="w-14 h-14 rounded-xl bg-foreground text-background flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform">
-                          <Icon className="w-7 h-7" />
-                        </div>
-                        <div>
-                          <h3 className="font-display font-semibold text-lg mb-2">{benefit.title}</h3>
-                          <p className="text-muted-foreground text-sm leading-relaxed">{benefit.description}</p>
-                        </div>
-                      </div>
-                    </div>
-                  );
-                })}
-              </div>
-            </div>
+          <div className="grid grid-cols-1 lg:grid-cols-5 gap-12 lg:gap-16">
+            {/* Left Column - 2 parts (40%) */}
+            <div className="lg:col-span-2">
+              <div className="lg:sticky lg:top-24 space-y-8">
+                {/* Headline */}
+                <div>
+                  <h1 className="font-display font-bold text-3xl lg:text-4xl tracking-tight mb-8">
+                    Unsure About Your Career?<br />
+                    <span className="text-muted-foreground">We've Got You Covered</span>
+                  </h1>
+                </div>
 
-            {/* Right Column - Mentors */}
-            <div>
-              <h2 className="font-display font-bold text-2xl lg:text-3xl tracking-tight mb-8">
-                Meet Your Mentors
-              </h2>
-              <div className="space-y-6">
-                {mentors.map((mentor) => (
-                  <Card 
-                    key={mentor.id} 
-                    className="border-border hover:border-foreground/50 transition-all duration-300 hover:shadow-lg group"
+                {/* Common CTA Button */}
+                <div className="mb-8">
+                  <a
+                    href={mentors[0]?.calendlyUrl || CALENDLY_URL}
+                    target="_blank"
+                    rel="noopener noreferrer"
                   >
-                    <CardHeader>
-                      <div className="flex items-start gap-4">
-                        <div className="w-16 h-16 rounded-xl bg-gradient-to-br from-foreground/10 to-foreground/5 flex items-center justify-center font-display font-bold text-xl text-foreground group-hover:scale-105 transition-transform flex-shrink-0">
-                          {mentor.name
-                            .split(" ")
-                            .map((n) => n[0])
-                            .join("")}
-                        </div>
-                        <div className="flex-1 min-w-0">
-                          <div className="flex items-start justify-between mb-2 gap-2">
-                            <div className="flex-1 min-w-0">
-                              <CardTitle className="text-lg mb-1">{mentor.name}</CardTitle>
-                              <p className="text-xs text-muted-foreground mb-2">
-                                {mentor.role}
-                              </p>
+                    <Button
+                      className="w-full bg-foreground text-background hover:opacity-90 group/btn"
+                      size="lg"
+                    >
+                      <Calendar className="w-4 h-4 mr-2" />
+                      Schedule a Call
+                      <ArrowRight className="w-4 h-4 ml-2 group-hover/btn:translate-x-1 transition-transform" />
+                    </Button>
+                  </a>
+                </div>
+
+                {/* Improved Mentor Cards */}
+                <div className="space-y-6">
+                  {mentors.map((mentor) => (
+                    <Card 
+                      key={mentor.id} 
+                      className="border-border hover:border-foreground/50 transition-all duration-300 hover:shadow-lg group"
+                    >
+                      <CardHeader className="pb-4">
+                        <div className="flex items-start gap-4">
+                          {/* Square Avatar */}
+                          <div className="w-16 h-16 rounded-lg bg-muted flex items-center justify-center font-display font-bold text-lg text-foreground group-hover:scale-105 transition-transform flex-shrink-0 border border-border">
+                            {mentor.name
+                              .split(" ")
+                              .map((n) => n[0])
+                              .join("")}
+                          </div>
+                          <div className="flex-1 min-w-0">
+                            <div className="flex items-start justify-between gap-2 mb-2">
+                              <div className="flex-1 min-w-0">
+                                <CardTitle className="text-base font-bold mb-1">{mentor.name}</CardTitle>
+                                <p className="text-sm text-muted-foreground mb-3 leading-tight">
+                                  {mentor.role}
+                                </p>
+                              </div>
+                              {mentor.available && (
+                                <span className="inline-flex items-center gap-1.5 text-xs font-medium text-green-700 dark:text-green-400 whitespace-nowrap flex-shrink-0">
+                                  <CheckCircle2 className="w-4 h-4" />
+                                  Available
+                                </span>
+                              )}
                             </div>
-                            {mentor.available && (
-                              <span className="inline-flex items-center gap-1 text-xs text-green-700 dark:text-green-400 whitespace-nowrap flex-shrink-0">
-                                <CheckCircle2 className="w-3 h-3" />
-                                Available
-                              </span>
+                            <p className="text-sm text-foreground leading-relaxed mb-4">
+                              {mentor.bio}
+                            </p>
+                            <div className="flex flex-wrap gap-2 mb-4">
+                              {mentor.expertise.map((skill, skillIndex) => (
+                                <span
+                                  key={skillIndex}
+                                  className="inline-block bg-muted px-3 py-1.5 text-xs font-medium text-foreground/80 rounded-full border border-border/50"
+                                >
+                                  {skill}
+                                </span>
+                              ))}
+                            </div>
+                            {/* Social Links */}
+                            {(mentor.linkedin || mentor.twitter) && (
+                              <div className="flex gap-3 mb-4">
+                                {mentor.linkedin && (
+                                  <a
+                                    href={mentor.linkedin}
+                                    className="text-muted-foreground hover:text-foreground transition-colors"
+                                    onClick={(e) => e.stopPropagation()}
+                                  >
+                                    <Linkedin className="w-4 h-4" />
+                                  </a>
+                                )}
+                                {mentor.twitter && (
+                                  <a
+                                    href={mentor.twitter}
+                                    className="text-muted-foreground hover:text-foreground transition-colors"
+                                    onClick={(e) => e.stopPropagation()}
+                                  >
+                                    <Twitter className="w-4 h-4" />
+                                  </a>
+                                )}
+                              </div>
                             )}
                           </div>
-                          <p className="text-sm text-muted-foreground leading-relaxed mb-3">
-                            {mentor.bio}
-                          </p>
-                          <div className="flex flex-wrap gap-2">
-                            {mentor.expertise.map((skill, skillIndex) => (
-                              <span
-                                key={skillIndex}
-                                className="inline-block bg-muted px-2.5 py-1 text-xs font-medium text-foreground/70 rounded-full"
-                              >
-                                {skill}
-                              </span>
-                            ))}
-                          </div>
-                          {(mentor.linkedin || mentor.twitter) && (
-                            <div className="flex gap-2 mt-3">
-                              {mentor.linkedin && (
-                                <a
-                                  href={mentor.linkedin}
-                                  className="text-muted-foreground hover:text-foreground transition-colors"
-                                >
-                                  <Linkedin className="w-4 h-4" />
-                                </a>
-                              )}
-                              {mentor.twitter && (
-                                <a
-                                  href={mentor.twitter}
-                                  className="text-muted-foreground hover:text-foreground transition-colors"
-                                >
-                                  <Twitter className="w-4 h-4" />
-                                </a>
-                              )}
-                            </div>
-                          )}
                         </div>
-                      </div>
-                    </CardHeader>
-                  </Card>
-                ))}
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Parallel Layout: Content Left, Form Right */}
-      <section className="py-16 lg:py-24 border-b border-border bg-muted/20">
-        <div className="container mx-auto px-6 lg:px-12">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-start max-w-6xl mx-auto">
-            {/* Left Column - Content */}
-            <div className="lg:sticky lg:top-24">
-              <h2 className="font-display font-bold text-3xl lg:text-4xl tracking-tight mb-4">
-                Ready to Get Clarity?<br />
-                <span className="text-muted-foreground">Book Your Session</span>
-              </h2>
-              <p className="text-muted-foreground mb-8">
-                Take the first step. Fill out the form and we'll reach out to schedule your one-on-one session. No pressure- just a conversation that could change your career.
-              </p>
-              
-              {/* Quick highlights */}
-              <div className="space-y-4">
-                <div className="flex items-start gap-3">
-                  <Circle className="w-5 h-5 text-foreground mt-0.5 flex-shrink-0" fill="currentColor" />
-                  <div>
-                    <p className="text-sm font-medium">Free to book</p>
-                    <p className="text-xs text-muted-foreground">No commitment required</p>
-                  </div>
-                </div>
-                <div className="flex items-start gap-3">
-                  <Circle className="w-5 h-5 text-foreground mt-0.5 flex-shrink-0" fill="currentColor" />
-                  <div>
-                    <p className="text-sm font-medium">24-48 hour response</p>
-                    <p className="text-xs text-muted-foreground">We'll get back to you quickly</p>
-                  </div>
-                </div>
-                <div className="flex items-start gap-3">
-                  <Circle className="w-5 h-5 text-foreground mt-0.5 flex-shrink-0" fill="currentColor" />
-                  <div>
-                    <p className="text-sm font-medium">Choose your mentor</p>
-                    <p className="text-xs text-muted-foreground">Pick someone who aligns with your goals</p>
-                  </div>
+                      </CardHeader>
+                    </Card>
+                  ))}
                 </div>
               </div>
             </div>
 
-            {/* Right Column - Form */}
-            <div>
-              <Card className="border-border">
-                <CardHeader>
-                  <CardTitle>Mentorship Request</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <MentorshipBookingForm
-                    mentors={mentors.map((m) => ({
-                      id: m.id,
-                      name: m.name,
-                      role: m.role,
-                    }))}
-                  />
-                </CardContent>
-              </Card>
-            </div>
-          </div>
-        </div>
-      </section>
+            {/* Right Column - 3 parts (60%) */}
+            <div className="lg:col-span-3">
+              {/* Filter Tabs - Enhanced */}
+              <Tabs value={selectedTab} onValueChange={setSelectedTab} className="w-full">
+                <div className="mb-10">
+                  <TabsList className="bg-muted/30 h-auto p-1.5 border border-border/50 rounded-lg">
+                    <TabsTrigger 
+                      value="All" 
+                      className="px-5 py-2.5 text-sm font-medium data-[state=active]:bg-foreground data-[state=active]:text-background data-[state=active]:shadow-sm rounded-md transition-all"
+                    >
+                      All
+                    </TabsTrigger>
+                    <TabsTrigger 
+                      value="1:1 Call" 
+                      className="px-5 py-2.5 text-sm font-medium data-[state=active]:bg-foreground data-[state=active]:text-background data-[state=active]:shadow-sm rounded-md transition-all"
+                    >
+                      1:1 Call
+                    </TabsTrigger>
+                    <TabsTrigger 
+                      value="Digital Product" 
+                      className="px-5 py-2.5 text-sm font-medium data-[state=active]:bg-foreground data-[state=active]:text-background data-[state=active]:shadow-sm rounded-md transition-all"
+                    >
+                      Digital Product
+                    </TabsTrigger>
+                    <TabsTrigger 
+                      value="Package" 
+                      className="px-5 py-2.5 text-sm font-medium data-[state=active]:bg-foreground data-[state=active]:text-background data-[state=active]:shadow-sm rounded-md transition-all"
+                    >
+                      Package
+                    </TabsTrigger>
+                  </TabsList>
+                </div>
 
-      {/* Process Section - Horizontal Timeline */}
-      <section className="py-16 lg:py-24">
-        <div className="container mx-auto px-6 lg:px-12">
-          <div className="max-w-6xl mx-auto">
-            <h2 className="font-display font-bold text-3xl lg:text-4xl tracking-tight mb-20 text-center">
-              How It Works
-            </h2>
-            
-            <div className="relative">
-              {/* Horizontal Timeline Line - Desktop */}
-              <div className="hidden lg:block absolute top-10 left-[10%] right-[10%] h-px bg-border" />
-              
-              {/* Steps Container */}
-              <div className="grid grid-cols-1 lg:grid-cols-3 gap-16 lg:gap-4 relative">
-                {[
-                  {
-                    step: "1",
-                    title: "Share Your Story",
-                    description: "Fill out a simple form- tell us about yourself, your current situation, and what's on your mind. Don't worry about having all the answers; that's what we're here for.",
-                  },
-                  {
-                    step: "2",
-                    title: "We'll Connect With You",
-                    description: "Within 24-48 hours, we'll reach out to schedule a time that works for you. No pressure, no sales pitch- just a genuine conversation.",
-                  },
-                  {
-                    step: "3",
-                    title: "Get the Clarity You Need",
-                    description: "Have an honest conversation with your mentor. Ask questions, share your concerns, and walk away with a clearer direction and actionable next steps.",
-                  },
-                ].map((item, index) => (
-                  <div key={index} className="relative">
-                    {/* Step Number Circle - Positioned on Timeline */}
-                    <div className="flex flex-col items-center">
-                      {/* Circle with number */}
-                      <div className="relative z-10 w-20 h-20 rounded-full bg-foreground text-background flex items-center justify-center font-display font-bold text-2xl mb-8 border-4 border-background shadow-md">
-                        {item.step}
-                      </div>
-                      
-                      {/* Content Below Circle */}
-                      <div className="text-center">
-                        <h3 className="font-display font-bold text-xl lg:text-2xl mb-4">{item.title}</h3>
-                        <p className="text-muted-foreground text-sm lg:text-base leading-relaxed max-w-xs mx-auto">
-                          {item.description}
-                        </p>
-                      </div>
-                    </div>
+                {/* Service Cards - Enhanced Design */}
+                <TabsContent value={selectedTab} className="mt-0">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    {filteredServices.map((service) => (
+                      <Link key={service.id} to={`/mentorship/service/${service.id}`}>
+                        <Card 
+                          className="border-border hover:border-foreground/50 transition-all duration-300 hover:shadow-lg group cursor-pointer h-full bg-background relative overflow-hidden"
+                        >
+                          {/* Subtle accent line on hover */}
+                          <div className="absolute top-0 left-0 right-0 h-1 bg-foreground opacity-0 group-hover:opacity-100 transition-opacity" />
+                          
+                          
+                          <CardContent className="p-6">
+                            <div className="flex flex-col h-full">
+                              {/* Top Section */}
+                              <div className="flex-1 mb-4">
+                                {service.type !== "Package" ? (
+                                  <>
+                                    <div className="flex items-center gap-2 mb-3">
+                                      <span className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">
+                                        {service.category}
+                                      </span>
+                                      {service.rating && (
+                                        <div className="flex items-center gap-1 ml-auto">
+                                          <Star className="w-3.5 h-3.5 fill-foreground text-foreground" />
+                                          <span className="text-xs font-semibold">{service.rating}</span>
+                                        </div>
+                                      )}
+                                    </div>
+                                    
+                                    <h3 className="font-display font-bold text-xl mb-3 group-hover:text-foreground/80 transition-colors leading-tight">
+                                      {service.title}
+                                    </h3>
+                                    
+                                    {service.description && (
+                                      <p className="text-sm text-muted-foreground mb-6 line-clamp-2 leading-relaxed">
+                                        {service.description}
+                                      </p>
+                                    )}
+                                  </>
+                                ) : (
+                                  <>
+                                    {/* Package Header */}
+                                    <div className="mb-3">
+                                      <span className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">
+                                        Package . {service.includedServices?.reduce((sum, s) => sum + s.quantity, 0) || 0} products
+                                      </span>
+                                    </div>
+                                    
+                                    {/* Package Title */}
+                                    <h3 className="font-display font-bold text-xl mb-2 group-hover:text-foreground/80 transition-colors leading-tight">
+                                      {service.title}
+                                    </h3>
+                                    
+                                    {/* Package Description */}
+                                    {service.description && (
+                                      <p className="text-sm text-muted-foreground mb-4 leading-relaxed">
+                                        {service.description}
+                                      </p>
+                                    )}
+                                    
+                                    {/* Included Services List */}
+                                    {service.includedServices && service.includedServices.length > 0 && (
+                                      <div className="space-y-0 mb-6">
+                                        {service.includedServices.map((included, index) => (
+                                          <div key={index} className="py-3 border-b border-border/50 last:border-b-0">
+                                            <div className="flex items-start justify-between gap-4">
+                                              <div className="flex-1 min-w-0">
+                                                <div className="text-sm font-medium text-foreground mb-1">
+                                                  {included.name}
+                                                </div>
+                                                <div className="text-xs text-muted-foreground">
+                                                  {included.type}
+                                                </div>
+                                              </div>
+                                              <span className="text-sm font-medium text-foreground whitespace-nowrap">
+                                                x{included.quantity}
+                                              </span>
+                                            </div>
+                                          </div>
+                                        ))}
+                                      </div>
+                                    )}
+                                  </>
+                                )}
+                              </div>
+
+                              {/* Bottom Section - Price and CTA */}
+                              <div className="flex items-end justify-between gap-4 pt-4">
+                                <div className="flex items-baseline gap-3 flex-wrap">
+                                  <div className="flex items-baseline gap-2">
+                                    <span className="font-display font-bold text-2xl">
+                                      ₹{service.price.toLocaleString()}
+                                    </span>
+                                    {service.originalPrice && (
+                                      <span className="text-base text-muted-foreground line-through">
+                                        ₹{service.originalPrice.toLocaleString()}
+                                      </span>
+                                    )}
+                                    {service.price === 0 && (
+                                      <span className="text-sm text-muted-foreground">
+                                        Contact for pricing
+                                      </span>
+                                    )}
+                                  </div>
+                                  {service.bestDeal && (
+                                    <span className="inline-block bg-purple-500 text-white px-3 py-1 text-xs font-semibold rounded-full">
+                                      Best Deal
+                                    </span>
+                                  )}
+                                </div>
+                                
+                                <Button
+                                  variant="ghost"
+                                  size="icon"
+                                  className="w-10 h-10 rounded-full bg-foreground text-background hover:opacity-90 group-hover:scale-110 transition-transform flex-shrink-0"
+                                >
+                                  <ArrowRight className="w-4 h-4" />
+                                </Button>
+                              </div>
+                            </div>
+                          </CardContent>
+                        </Card>
+                      </Link>
+                    ))}
                   </div>
-                ))}
-              </div>
-              
-              {/* Vertical Timeline Line - Mobile */}
-              <div className="lg:hidden absolute left-10 top-0 bottom-0 w-px bg-border" />
+                </TabsContent>
+              </Tabs>
             </div>
           </div>
         </div>

@@ -112,18 +112,18 @@ const CoursesSection = () => {
   const regularCourses = filteredCourses.filter((course) => !course.featured);
 
   return (
-    <section id="courses" className="py-24 lg:py-32 bg-background">
+    <section id="courses" className="py-12 lg:py-16 bg-background">
       <div className="container mx-auto px-6 lg:px-12">
         {/* Section Header */}
         <div
           ref={headerRef}
-          className={`max-w-2xl mb-12 transition-all duration-700 ${
+          className={`max-w-2xl mb-6 transition-all duration-700 ${
             headerVisible
               ? "opacity-100 translate-y-0"
               : "opacity-0 translate-y-8"
           }`}
         >
-          <h2 className="font-display font-bold text-3xl lg:text-4xl tracking-tight mb-4">
+          <h2 className="font-display font-bold text-3xl lg:text-4xl tracking-tight mb-2">
             Courses
           </h2>
           <p className="text-muted-foreground text-base lg:text-lg">
@@ -133,7 +133,7 @@ const CoursesSection = () => {
 
         {/* Filter Buttons */}
         <div
-          className={`flex flex-wrap gap-3 mb-12 transition-all duration-700 ${
+          className={`flex flex-wrap gap-3 mb-8 transition-all duration-700 ${
             headerVisible
               ? "opacity-100 translate-y-0"
               : "opacity-0 translate-y-8"
@@ -165,8 +165,8 @@ const CoursesSection = () => {
 
         {/* Featured Courses */}
         {featuredCourses.length > 0 && (
-          <div className="mb-12">
-            <h3 className="font-display font-semibold text-lg mb-6 text-muted-foreground uppercase tracking-wider">
+          <div className="mb-8">
+            <h3 className="font-display font-semibold text-lg mb-4 text-muted-foreground uppercase tracking-wider">
               Featured
             </h3>
             <div
@@ -196,11 +196,11 @@ const CoursesSection = () => {
         {regularCourses.length > 0 && (
           <div>
             {featuredCourses.length > 0 && (
-              <h3 className="font-display font-semibold text-lg mb-6 text-muted-foreground uppercase tracking-wider">
+              <h3 className="font-display font-semibold text-lg mb-4 text-muted-foreground uppercase tracking-wider">
                 All Courses
               </h3>
             )}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 lg:gap-6">
               {regularCourses.map((course, index) => (
                 <div
                   key={course.id}

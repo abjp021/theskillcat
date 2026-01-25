@@ -19,7 +19,7 @@ const NewsletterSection = () => {
   };
 
   return (
-    <section className="py-24 lg:py-32 bg-muted/30 border-y border-border">
+    <section className="py-12 lg:py-16 bg-muted/30 border-y border-border">
       <div className="container mx-auto px-6 lg:px-12">
         <div
           ref={ref}
@@ -29,10 +29,10 @@ const NewsletterSection = () => {
               : "opacity-0 translate-y-8"
           }`}
         >
-          <h2 className="font-display font-bold text-3xl lg:text-4xl tracking-tight mb-4">
+          <h2 className="font-display font-bold text-3xl lg:text-4xl tracking-tight mb-3">
             Get Career Insights Weekly
           </h2>
-          <p className="text-muted-foreground text-base lg:text-lg mb-8 max-w-xl mx-auto">
+          <p className="text-muted-foreground text-base lg:text-lg mb-6 max-w-xl mx-auto">
             Join 10,000+ professionals getting actionable career advice, industry trends, and exclusive resources.
           </p>
 

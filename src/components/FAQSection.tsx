@@ -44,18 +44,18 @@ const FAQSection = () => {
   const { ref: accordionRef, isVisible: accordionVisible } = useScrollAnimation({ threshold: 0.1 });
 
   return (
-    <section id="faq" className="py-24 lg:py-32 bg-background">
+    <section id="faq" className="py-12 lg:py-16 bg-background">
       <div className="container mx-auto px-6 lg:px-12">
         {/* Section Header */}
         <div
           ref={headerRef}
-          className={`max-w-2xl mb-16 transition-all duration-700 ${
+          className={`max-w-2xl mb-8 transition-all duration-700 ${
             headerVisible
               ? "opacity-100 translate-y-0"
               : "opacity-0 translate-y-8"
           }`}
         >
-          <h2 className="font-display font-bold text-3xl lg:text-4xl tracking-tight mb-4">
+          <h2 className="font-display font-bold text-3xl lg:text-4xl tracking-tight mb-2">
             Frequently Asked Questions
           </h2>
           <p className="text-muted-foreground text-base lg:text-lg">
