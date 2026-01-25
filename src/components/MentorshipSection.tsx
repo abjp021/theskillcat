@@ -156,7 +156,6 @@ const MentorshipSection = () => {
             </div>
           </div>
         </div>
-
       </div>
     </section>
   );
