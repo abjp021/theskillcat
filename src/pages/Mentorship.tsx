@@ -7,7 +7,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Linkedin, Twitter, CheckCircle2, Sparkles, ArrowRight, Star, Calendar } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { CALENDLY_URL } from "@/lib/constants";
-
+import { CatEyeMinimal, CatWhiskers, CatPawFilled, CatSilhouette } from "@/components/CatGraphics";
 interface Mentor {
   id: string;
   name: string;
@@ -165,19 +165,36 @@ const Mentorship = () => {
     : services.filter(service => service.type === selectedTab);
 
   return (
-    <main className="min-h-screen bg-background">
+    <main className="min-h-screen bg-background relative overflow-hidden">
       <Navigation />
 
+      {/* Cat-themed decorative elements */}
+      <div className="absolute top-32 right-0 lg:right-12 opacity-10 pointer-events-none">
+        <CatSilhouette size={200} className="text-foreground" />
+      </div>
+      <div className="absolute top-1/2 left-0 opacity-5 pointer-events-none hidden lg:block">
+        <CatWhiskers size={180} className="text-foreground -rotate-12" />
+      </div>
+      <div className="absolute bottom-48 right-8 opacity-10 pointer-events-none hidden lg:block">
+        <CatPawFilled size={60} className="text-foreground rotate-12" />
+      </div>
+      <div className="absolute bottom-96 right-24 opacity-5 pointer-events-none hidden lg:block">
+        <CatPawFilled size={40} className="text-foreground -rotate-6" />
+      </div>
+
       {/* Main Content - 40:60 Ratio Layout */}
-      <section className="pt-32 lg:pt-40 pb-16 lg:pb-24">
+      <section className="pt-32 lg:pt-40 pb-16 lg:pb-24 relative z-10">
         <div className="container mx-auto px-6 lg:px-12">
           <div className="grid grid-cols-1 lg:grid-cols-5 gap-12 lg:gap-16">
             {/* Left Column - 2 parts (40%) */}
             <div className="lg:col-span-2">
               <div className="lg:sticky lg:top-24 space-y-8">
-                {/* Headline */}
-                <div>
-                  <h1 className="font-display font-bold text-3xl lg:text-4xl tracking-tight mb-8">
+                {/* Headline with cat eye accent */}
+                <div className="relative">
+                  <div className="absolute -top-2 -left-4 opacity-20">
+                    <CatEyeMinimal size={60} className="text-foreground" />
+                  </div>
+                  <h1 className="font-display font-bold text-3xl lg:text-4xl tracking-tight mb-8 relative">
                     Unsure About Your Career?<br />
                     <span className="text-muted-foreground">We've Got You Covered</span>
                   </h1>
