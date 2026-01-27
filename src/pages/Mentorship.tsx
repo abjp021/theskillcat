@@ -186,29 +186,34 @@ const Mentorship = () => {
       <section className="pt-32 lg:pt-40 pb-16 lg:pb-24 relative z-10">
         <div className="container mx-auto px-6 lg:px-12">
           <div className="grid grid-cols-1 lg:grid-cols-5 gap-12 lg:gap-16">
-            {/* Left Column - 2 parts (40%) */}
+            {/* Left Column - 2 parts (40%) - HIGHLIGHTED SECTION */}
             <div className="lg:col-span-2">
-              <div className="lg:sticky lg:top-24 space-y-8">
+              <div className="lg:sticky lg:top-24 space-y-8 bg-foreground text-background p-8 rounded-2xl relative overflow-hidden">
+                {/* Decorative gradient overlay */}
+                <div className="absolute inset-0 bg-gradient-to-br from-foreground via-foreground to-foreground/90 pointer-events-none" />
+                <div className="absolute top-0 right-0 w-64 h-64 bg-background/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 pointer-events-none" />
+                <div className="absolute bottom-0 left-0 w-48 h-48 bg-background/5 rounded-full blur-2xl translate-y-1/2 -translate-x-1/2 pointer-events-none" />
+                
                 {/* Headline with cat eye accent */}
-                <div className="relative">
-                  <div className="absolute -top-2 -left-4 opacity-20">
-                    <CatEyeMinimal size={60} className="text-foreground" />
+                <div className="relative z-10">
+                  <div className="absolute -top-2 -left-4 opacity-30">
+                    <CatEyeMinimal size={60} className="text-background" />
                   </div>
-                  <h1 className="font-display font-bold text-3xl lg:text-4xl tracking-tight mb-8 relative">
+                  <h1 className="font-display font-bold text-3xl lg:text-4xl tracking-tight mb-8 relative text-background">
                     Unsure About Your Career?<br />
-                    <span className="text-muted-foreground">We've Got You Covered</span>
+                    <span className="text-background/70">We've Got You Covered</span>
                   </h1>
                 </div>
 
                 {/* Common CTA Button */}
-                <div className="mb-8">
+                <div className="mb-8 relative z-10">
                   <a
                     href={mentors[0]?.calendlyUrl || CALENDLY_URL}
                     target="_blank"
                     rel="noopener noreferrer"
                   >
                     <Button
-                      className="w-full bg-foreground text-background hover:opacity-90 group/btn"
+                      className="w-full bg-background text-foreground hover:bg-background/90 group/btn"
                       size="lg"
                     >
                       <Calendar className="w-4 h-4 mr-2" />
@@ -219,16 +224,16 @@ const Mentorship = () => {
                 </div>
 
                 {/* Improved Mentor Cards */}
-                <div className="space-y-6">
+                <div className="space-y-6 relative z-10">
                   {mentors.map((mentor) => (
                     <Card 
                       key={mentor.id} 
-                      className="border-border hover:border-foreground/50 transition-all duration-300 hover:shadow-lg group"
+                      className="border-background/20 bg-background/10 backdrop-blur-sm hover:bg-background/15 transition-all duration-300 hover:shadow-lg group"
                     >
                       <CardHeader className="pb-4">
                         <div className="flex items-start gap-4">
                           {/* Square Avatar */}
-                          <div className="w-16 h-16 rounded-lg bg-muted flex items-center justify-center font-display font-bold text-lg text-foreground group-hover:scale-105 transition-transform flex-shrink-0 border border-border">
+                          <div className="w-16 h-16 rounded-lg bg-background/20 flex items-center justify-center font-display font-bold text-lg text-background group-hover:scale-105 transition-transform flex-shrink-0 border border-background/30">
                             {mentor.name
                               .split(" ")
                               .map((n) => n[0])
@@ -237,26 +242,26 @@ const Mentorship = () => {
                           <div className="flex-1 min-w-0">
                             <div className="flex items-start justify-between gap-2 mb-2">
                               <div className="flex-1 min-w-0">
-                                <CardTitle className="text-base font-bold mb-1">{mentor.name}</CardTitle>
-                                <p className="text-sm text-muted-foreground mb-3 leading-tight">
+                                <CardTitle className="text-base font-bold mb-1 text-background">{mentor.name}</CardTitle>
+                                <p className="text-sm text-background/70 mb-3 leading-tight">
                                   {mentor.role}
                                 </p>
                               </div>
                               {mentor.available && (
-                                <span className="inline-flex items-center gap-1.5 text-xs font-medium text-green-700 dark:text-green-400 whitespace-nowrap flex-shrink-0">
+                                <span className="inline-flex items-center gap-1.5 text-xs font-medium text-green-400 whitespace-nowrap flex-shrink-0">
                                   <CheckCircle2 className="w-4 h-4" />
                                   Available
                                 </span>
                               )}
                             </div>
-                            <p className="text-sm text-foreground leading-relaxed mb-4">
+                            <p className="text-sm text-background/90 leading-relaxed mb-4">
                               {mentor.bio}
                             </p>
                             <div className="flex flex-wrap gap-2 mb-4">
                               {mentor.expertise.map((skill, skillIndex) => (
                                 <span
                                   key={skillIndex}
-                                  className="inline-block bg-muted px-3 py-1.5 text-xs font-medium text-foreground/80 rounded-full border border-border/50"
+                                  className="inline-block bg-background/20 px-3 py-1.5 text-xs font-medium text-background/80 rounded-full border border-background/30"
                                 >
                                   {skill}
                                 </span>
@@ -268,7 +273,7 @@ const Mentorship = () => {
                                 {mentor.linkedin && (
                                   <a
                                     href={mentor.linkedin}
-                                    className="text-muted-foreground hover:text-foreground transition-colors"
+                                    className="text-background/60 hover:text-background transition-colors"
                                     onClick={(e) => e.stopPropagation()}
                                   >
                                     <Linkedin className="w-4 h-4" />
@@ -277,7 +282,7 @@ const Mentorship = () => {
                                 {mentor.twitter && (
                                   <a
                                     href={mentor.twitter}
-                                    className="text-muted-foreground hover:text-foreground transition-colors"
+                                    className="text-background/60 hover:text-background transition-colors"
                                     onClick={(e) => e.stopPropagation()}
                                   >
                                     <Twitter className="w-4 h-4" />
