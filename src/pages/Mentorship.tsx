@@ -7,7 +7,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Linkedin, Twitter, CheckCircle2, Sparkles, ArrowRight, Star, Calendar } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { CALENDLY_URL } from "@/lib/constants";
-import { CatEyeMinimal, CatWhiskers, CatPawFilled, CatSilhouette } from "@/components/CatGraphics";
+import { CatWhiskers, CatPawFilled, CatSilhouette } from "@/components/CatGraphics";
 interface Mentor {
   id: string;
   name: string;
@@ -73,6 +73,7 @@ const services: Service[] = [
     type: "1:1 Call",
     description: "Get clarity on your career path and next steps",
     price: 750,
+    rating: 4.8,
   },
   {
     id: "resume-review",
@@ -81,6 +82,7 @@ const services: Service[] = [
     type: "1:1 Call",
     description: "Find your next job with a perfect resume and LinkedIn",
     price: 750,
+    rating: 4.9,
   },
   {
     id: "resume-drafting",
@@ -89,6 +91,7 @@ const services: Service[] = [
     type: "1:1 Call",
     price: 1200,
     originalPrice: 1500,
+    rating: 4.7,
   },
   {
     id: "linkedin-optimization",
@@ -97,6 +100,7 @@ const services: Service[] = [
     type: "1:1 Call",
     description: "Your LinkedIn is your sales page! Optimize it :)",
     price: 400,
+    rating: 4.6,
   },
   {
     id: "pm-roadmap",
@@ -116,6 +120,7 @@ const services: Service[] = [
     description: "Your LinkedIn is the gateway for your new role!",
     price: 50,
     originalPrice: 199,
+    rating: 4.5,
   },
   {
     id: "mentorship-package-30",
@@ -129,6 +134,7 @@ const services: Service[] = [
       { name: "1:1 Mentorship", quantity: 1, type: "Video Meeting" },
     ],
     price: 2100,
+    rating: 4.8,
   },
   {
     id: "interview-prep-package",
@@ -142,6 +148,7 @@ const services: Service[] = [
     ],
     price: 1200,
     bestDeal: true,
+    rating: 4.9,
   },
   {
     id: "mentorship-package-weekly",
@@ -154,6 +161,7 @@ const services: Service[] = [
     ],
     price: 3600,
     originalPrice: 4800,
+    rating: 4.9,
   },
 ];
 
@@ -168,18 +176,24 @@ const Mentorship = () => {
     <main className="min-h-screen bg-background relative overflow-hidden">
       <Navigation />
 
-      {/* Cat-themed decorative elements */}
-      <div className="absolute top-32 right-0 lg:right-12 opacity-10 pointer-events-none">
-        <CatSilhouette size={200} className="text-foreground" />
+      {/* Cat-themed decorative elements - Cat Paws */}
+      <div className="absolute top-24 left-12 opacity-12 pointer-events-none hidden lg:block z-0">
+        <CatPawFilled size={70} className="text-muted-foreground -rotate-12" />
       </div>
-      <div className="absolute top-1/2 left-0 opacity-5 pointer-events-none hidden lg:block">
-        <CatWhiskers size={180} className="text-foreground -rotate-12" />
+      <div className="absolute top-1/2 left-0 opacity-5 pointer-events-none hidden lg:block z-0">
+        <CatWhiskers size={180} className="text-muted-foreground -rotate-12" />
       </div>
-      <div className="absolute bottom-48 right-8 opacity-10 pointer-events-none hidden lg:block">
-        <CatPawFilled size={60} className="text-foreground rotate-12" />
+      <div className="absolute top-2/3 right-16 opacity-7 pointer-events-none hidden lg:block z-0">
+        <CatPawFilled size={45} className="text-muted-foreground rotate-45" />
       </div>
-      <div className="absolute bottom-96 right-24 opacity-5 pointer-events-none hidden lg:block">
-        <CatPawFilled size={40} className="text-foreground -rotate-6" />
+      <div className="absolute bottom-48 right-8 opacity-10 pointer-events-none hidden lg:block z-0">
+        <CatPawFilled size={60} className="text-muted-foreground rotate-12" />
+      </div>
+      <div className="absolute bottom-96 right-24 opacity-5 pointer-events-none hidden lg:block z-0">
+        <CatPawFilled size={40} className="text-muted-foreground -rotate-6" />
+      </div>
+      <div className="absolute bottom-32 left-12 opacity-6 pointer-events-none hidden lg:block z-0">
+        <CatPawFilled size={55} className="text-muted-foreground rotate-30" />
       </div>
 
       {/* Main Content - 40:60 Ratio Layout */}
@@ -189,12 +203,9 @@ const Mentorship = () => {
             {/* Left Column - 2 parts (40%) */}
             <div className="lg:col-span-2">
               <div className="lg:sticky lg:top-24 space-y-8">
-                {/* Headline with cat eye accent */}
-                <div className="relative">
-                  <div className="absolute -top-2 -left-4 opacity-20">
-                    <CatEyeMinimal size={60} className="text-foreground" />
-                  </div>
-                  <h1 className="font-display font-bold text-3xl lg:text-4xl tracking-tight mb-8 relative">
+                {/* Headline */}
+                <div>
+                  <h1 className="font-display font-bold text-3xl lg:text-4xl tracking-tight mb-8">
                     Unsure About Your Career?<br />
                     <span className="text-muted-foreground">We've Got You Covered</span>
                   </h1>
@@ -223,7 +234,7 @@ const Mentorship = () => {
                   {mentors.map((mentor) => (
                     <Card 
                       key={mentor.id} 
-                      className="border-border hover:border-foreground/50 transition-all duration-300 hover:shadow-lg group"
+                      className="rounded-none border-border hover:border-foreground/50 transition-all duration-300 hover:shadow-lg group"
                     >
                       <CardHeader className="pb-4">
                         <div className="flex items-start gap-4">
@@ -295,57 +306,76 @@ const Mentorship = () => {
             </div>
 
             {/* Right Column - 3 parts (60%) */}
-            <div className="lg:col-span-3">
-              {/* Filter Tabs - Enhanced */}
-              <Tabs value={selectedTab} onValueChange={setSelectedTab} className="w-full">
-                <div className="mb-10">
-                  <TabsList className="bg-muted/30 h-auto p-1.5 border border-border/50 rounded-lg">
-                    <TabsTrigger 
-                      value="All" 
-                      className="px-5 py-2.5 text-sm font-medium data-[state=active]:bg-foreground data-[state=active]:text-background data-[state=active]:shadow-sm rounded-md transition-all"
-                    >
-                      All
-                    </TabsTrigger>
-                    <TabsTrigger 
-                      value="1:1 Call" 
-                      className="px-5 py-2.5 text-sm font-medium data-[state=active]:bg-foreground data-[state=active]:text-background data-[state=active]:shadow-sm rounded-md transition-all"
-                    >
-                      1:1 Call
-                    </TabsTrigger>
-                    <TabsTrigger 
-                      value="Digital Product" 
-                      className="px-5 py-2.5 text-sm font-medium data-[state=active]:bg-foreground data-[state=active]:text-background data-[state=active]:shadow-sm rounded-md transition-all"
-                    >
-                      Digital Product
-                    </TabsTrigger>
-                    <TabsTrigger 
-                      value="Package" 
-                      className="px-5 py-2.5 text-sm font-medium data-[state=active]:bg-foreground data-[state=active]:text-background data-[state=active]:shadow-sm rounded-md transition-all"
-                    >
-                      Package
-                    </TabsTrigger>
-                  </TabsList>
-                </div>
+            <div className="lg:col-span-3 relative">
+              {/* Cat whiskers positioned relative to this section - properly aligned behind content */}
+              <div className="absolute top-1/2 -right-12 -translate-y-1/2 opacity-10 pointer-events-none z-0 hidden lg:block">
+                <CatWhiskers size={200} className="text-foreground" />
+              </div>
+              
+              <div className="relative p-6 lg:p-8 overflow-hidden bg-gradient-to-br from-foreground/8 via-foreground/5 to-foreground/10 border-2 border-foreground/10 shadow-lg z-10">
+                {/* Decorative background elements */}
+                <div className="absolute top-0 right-0 w-64 h-64 bg-foreground/15 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" />
+                <div className="absolute bottom-0 left-0 w-48 h-48 bg-foreground/12 rounded-full blur-2xl translate-y-1/2 -translate-x-1/2" />
+                <div className="absolute top-1/2 left-1/2 w-32 h-32 bg-foreground/8 rounded-full blur-2xl -translate-x-1/2 -translate-y-1/2" />
+                
+                {/* Subtle pattern overlay */}
+                <div className="absolute inset-0 opacity-[0.03] bg-[radial-gradient(circle_at_1px_1px,rgb(0,0,0)_1px,transparent_0)] [background-size:24px_24px]" />
+                
+                {/* Accent lines */}
+                <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-foreground/20 to-transparent" />
+                <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-foreground/20 to-transparent" />
+                
+                {/* Content wrapper with relative positioning */}
+                <div className="relative z-10">
+                  {/* Filter Tabs - Enhanced */}
+                  <Tabs value={selectedTab} onValueChange={setSelectedTab} className="w-full">
+                    <div className="mb-8">
+                      <TabsList className="bg-background/80 backdrop-blur-sm h-auto p-1.5 border border-foreground/20 shadow-sm">
+                      <TabsTrigger 
+                        value="All" 
+                        className="px-5 py-2.5 text-sm font-medium data-[state=active]:bg-foreground data-[state=active]:text-background data-[state=active]:shadow-sm transition-all"
+                      >
+                        All
+                      </TabsTrigger>
+                      <TabsTrigger 
+                        value="1:1 Call" 
+                        className="px-5 py-2.5 text-sm font-medium data-[state=active]:bg-foreground data-[state=active]:text-background data-[state=active]:shadow-sm transition-all"
+                      >
+                        1:1 Call
+                      </TabsTrigger>
+                      <TabsTrigger 
+                        value="Digital Product" 
+                        className="px-5 py-2.5 text-sm font-medium data-[state=active]:bg-foreground data-[state=active]:text-background data-[state=active]:shadow-sm transition-all"
+                      >
+                        Digital Product
+                      </TabsTrigger>
+                      <TabsTrigger 
+                        value="Package" 
+                        className="px-5 py-2.5 text-sm font-medium data-[state=active]:bg-foreground data-[state=active]:text-background data-[state=active]:shadow-sm transition-all"
+                      >
+                        Package
+                      </TabsTrigger>
+                    </TabsList>
+                  </div>
 
-                {/* Service Cards - Enhanced Design */}
-                <TabsContent value={selectedTab} className="mt-0">
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    {filteredServices.map((service) => (
-                      <Link key={service.id} to={`/mentorship/service/${service.id}`}>
-                        <Card 
-                          className="border-border hover:border-foreground/50 transition-all duration-300 hover:shadow-lg group cursor-pointer h-full bg-background relative overflow-hidden"
-                        >
-                          {/* Subtle accent line on hover */}
-                          <div className="absolute top-0 left-0 right-0 h-1 bg-foreground opacity-0 group-hover:opacity-100 transition-opacity" />
-                          
-                          
-                          <CardContent className="p-6">
-                            <div className="flex flex-col h-full">
+                  {/* Service Cards - Enhanced Design */}
+                  <TabsContent value={selectedTab} className="mt-0">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                      {filteredServices.map((service) => (
+                        <Link key={service.id} to={`/mentorship/service/${service.id}`}>
+                          <Card 
+                            className="rounded-none border-border hover:border-foreground/50 transition-all duration-300 hover:shadow-lg group cursor-pointer h-full bg-background relative overflow-hidden"
+                          >
+                            {/* Subtle accent line on hover */}
+                            <div className="absolute top-0 left-0 right-0 h-1 bg-foreground opacity-0 group-hover:opacity-100 transition-opacity" />
+                            
+                            
+                            <CardContent className="p-4 flex flex-col h-full">
                               {/* Top Section */}
-                              <div className="flex-1 mb-4">
+                              <div className="flex-1">
                                 {service.type !== "Package" ? (
                                   <>
-                                    <div className="flex items-center gap-2 mb-3">
+                                    <div className="flex items-center gap-2 mb-2">
                                       <span className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">
                                         {service.category}
                                       </span>
@@ -357,12 +387,12 @@ const Mentorship = () => {
                                       )}
                                     </div>
                                     
-                                    <h3 className="font-display font-bold text-xl mb-3 group-hover:text-foreground/80 transition-colors leading-tight">
+                                    <h3 className="font-display font-bold text-lg mb-2 group-hover:text-foreground/80 transition-colors leading-tight">
                                       {service.title}
                                     </h3>
                                     
                                     {service.description && (
-                                      <p className="text-sm text-muted-foreground mb-6 line-clamp-2 leading-relaxed">
+                                      <p className="text-sm text-muted-foreground mb-3 line-clamp-2 leading-snug">
                                         {service.description}
                                       </p>
                                     )}
@@ -370,32 +400,38 @@ const Mentorship = () => {
                                 ) : (
                                   <>
                                     {/* Package Header */}
-                                    <div className="mb-3">
+                                    <div className="flex items-center justify-between mb-2">
                                       <span className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">
                                         Package . {service.includedServices?.reduce((sum, s) => sum + s.quantity, 0) || 0} products
                                       </span>
+                                      {service.rating && (
+                                        <div className="flex items-center gap-1">
+                                          <Star className="w-3.5 h-3.5 fill-foreground text-foreground" />
+                                          <span className="text-xs font-semibold">{service.rating}</span>
+                                        </div>
+                                      )}
                                     </div>
                                     
                                     {/* Package Title */}
-                                    <h3 className="font-display font-bold text-xl mb-2 group-hover:text-foreground/80 transition-colors leading-tight">
+                                    <h3 className="font-display font-bold text-lg mb-2 group-hover:text-foreground/80 transition-colors leading-tight">
                                       {service.title}
                                     </h3>
                                     
                                     {/* Package Description */}
                                     {service.description && (
-                                      <p className="text-sm text-muted-foreground mb-4 leading-relaxed">
+                                      <p className="text-sm text-muted-foreground mb-3 leading-snug">
                                         {service.description}
                                       </p>
                                     )}
                                     
                                     {/* Included Services List */}
                                     {service.includedServices && service.includedServices.length > 0 && (
-                                      <div className="space-y-0 mb-6">
+                                      <div className="space-y-0 mb-3">
                                         {service.includedServices.map((included, index) => (
-                                          <div key={index} className="py-3 border-b border-border/50 last:border-b-0">
+                                          <div key={index} className="py-2 border-b border-border/50 last:border-b-0">
                                             <div className="flex items-start justify-between gap-4">
                                               <div className="flex-1 min-w-0">
-                                                <div className="text-sm font-medium text-foreground mb-1">
+                                                <div className="text-sm font-medium text-foreground mb-0.5">
                                                   {included.name}
                                                 </div>
                                                 <div className="text-xs text-muted-foreground">
@@ -415,46 +451,47 @@ const Mentorship = () => {
                               </div>
 
                               {/* Bottom Section - Price and CTA */}
-                              <div className="flex items-end justify-between gap-4 pt-4">
-                                <div className="flex items-baseline gap-3 flex-wrap">
-                                  <div className="flex items-baseline gap-2">
-                                    <span className="font-display font-bold text-2xl">
-                                      ₹{service.price.toLocaleString()}
-                                    </span>
-                                    {service.originalPrice && (
-                                      <span className="text-base text-muted-foreground line-through">
-                                        ₹{service.originalPrice.toLocaleString()}
+                              <div className="flex items-end justify-between gap-4 pt-3 mt-auto border-t border-border/50">
+                                  <div className="flex items-baseline gap-3 flex-wrap">
+                                    <div className="flex items-baseline gap-2">
+                                      <span className="font-display font-bold text-xl">
+                                        ₹{service.price.toLocaleString()}
                                       </span>
-                                    )}
-                                    {service.price === 0 && (
-                                      <span className="text-sm text-muted-foreground">
-                                        Contact for pricing
+                                      {service.originalPrice && (
+                                        <span className="text-sm text-muted-foreground line-through">
+                                          ₹{service.originalPrice.toLocaleString()}
+                                        </span>
+                                      )}
+                                      {service.price === 0 && (
+                                        <span className="text-sm text-muted-foreground">
+                                          Contact for pricing
+                                        </span>
+                                      )}
+                                    </div>
+                                    {service.bestDeal && (
+                                      <span className="inline-block bg-purple-500 text-white px-2 py-0.5 text-xs font-semibold rounded-full">
+                                        Best Deal
                                       </span>
                                     )}
                                   </div>
-                                  {service.bestDeal && (
-                                    <span className="inline-block bg-purple-500 text-white px-3 py-1 text-xs font-semibold rounded-full">
-                                      Best Deal
-                                    </span>
-                                  )}
-                                </div>
-                                
-                                <Button
-                                  variant="ghost"
-                                  size="icon"
-                                  className="w-10 h-10 rounded-full bg-foreground text-background hover:opacity-90 group-hover:scale-110 transition-transform flex-shrink-0"
-                                >
-                                  <ArrowRight className="w-4 h-4" />
-                                </Button>
+                                  
+                                  <Button
+                                    variant="ghost"
+                                    size="icon"
+                                    className="w-9 h-9 rounded-full bg-foreground text-background hover:opacity-90 group-hover:scale-110 transition-transform flex-shrink-0"
+                                  >
+                                    <ArrowRight className="w-4 h-4" />
+                                  </Button>
                               </div>
-                            </div>
-                          </CardContent>
-                        </Card>
-                      </Link>
-                    ))}
-                  </div>
-                </TabsContent>
-              </Tabs>
+                            </CardContent>
+                          </Card>
+                        </Link>
+                      ))}
+                    </div>
+                  </TabsContent>
+                </Tabs>
+                </div>
+              </div>
             </div>
           </div>
         </div>

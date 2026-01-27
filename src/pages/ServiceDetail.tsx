@@ -5,6 +5,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { ArrowLeft, Calendar, Clock, Star } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { CALENDLY_URL } from "@/lib/constants";
+import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 
 interface IncludedService {
   name: string;
@@ -141,9 +142,262 @@ const serviceData: Record<string, Service> = {
   },
 };
 
+interface Review {
+  id: string;
+  name: string;
+  rating: number;
+  date: string;
+  comment: string;
+  initials: string;
+}
+
+// Dummy reviews for each service
+const serviceReviews: Record<string, Review[]> = {
+  "career-clarity-session": [
+    {
+      id: "1",
+      name: "Priya Sharma",
+      rating: 5,
+      date: "2 weeks ago",
+      comment: "This session was incredibly helpful! The mentor helped me identify my strengths and create a clear career roadmap. I now have a much better understanding of where I want to go.",
+      initials: "PS",
+    },
+    {
+      id: "2",
+      name: "Rahul Kumar",
+      rating: 5,
+      date: "1 month ago",
+      comment: "Excellent guidance! The mentor was patient and asked the right questions to help me understand my career goals. Highly recommend this session.",
+      initials: "RK",
+    },
+    {
+      id: "3",
+      name: "Anjali Mehta",
+      rating: 4,
+      date: "3 weeks ago",
+      comment: "Very insightful session. Got clarity on my next steps and what skills I need to develop. The mentor was professional and supportive.",
+      initials: "AM",
+    },
+  ],
+  "resume-review": [
+    {
+      id: "1",
+      name: "Vikram Singh",
+      rating: 5,
+      date: "1 week ago",
+      comment: "My resume went from average to outstanding! The mentor provided detailed feedback and helped me optimize my LinkedIn profile. Got 3 interview calls within a week!",
+      initials: "VS",
+    },
+    {
+      id: "2",
+      name: "Sneha Patel",
+      rating: 5,
+      date: "2 weeks ago",
+      comment: "Best investment I've made! The resume review was thorough and the LinkedIn optimization tips were game-changing. My profile views increased by 300%.",
+      initials: "SP",
+    },
+    {
+      id: "3",
+      name: "Arjun Reddy",
+      rating: 5,
+      date: "3 weeks ago",
+      comment: "Professional and detailed feedback. The mentor identified key improvements I never thought of. My resume now stands out to recruiters.",
+      initials: "AR",
+    },
+  ],
+  "resume-drafting": [
+    {
+      id: "1",
+      name: "Meera Nair",
+      rating: 5,
+      date: "1 week ago",
+      comment: "Got a professionally crafted resume that perfectly highlights my experience. The mentor understood my career goals and tailored the resume accordingly. Worth every rupee!",
+      initials: "MN",
+    },
+    {
+      id: "2",
+      name: "Karan Malhotra",
+      rating: 4,
+      date: "2 weeks ago",
+      comment: "Great service! The resume looks professional and ATS-friendly. The mentor was responsive and incorporated all my feedback. Highly satisfied.",
+      initials: "KM",
+    },
+    {
+      id: "3",
+      name: "Divya Rao",
+      rating: 5,
+      date: "1 month ago",
+      comment: "Excellent work! The resume is well-structured and impactful. I've already received positive feedback from recruiters. Thank you!",
+      initials: "DR",
+    },
+  ],
+  "linkedin-optimization": [
+    {
+      id: "1",
+      name: "Amit Joshi",
+      rating: 5,
+      date: "5 days ago",
+      comment: "Quick and effective! The mentor showed me exactly how to optimize my LinkedIn profile. My connection requests and profile views have increased significantly.",
+      initials: "AJ",
+    },
+    {
+      id: "2",
+      name: "Neha Gupta",
+      rating: 4,
+      date: "2 weeks ago",
+      comment: "Great tips and strategies! The session was concise but packed with valuable insights. My LinkedIn is now much more professional and engaging.",
+      initials: "NG",
+    },
+    {
+      id: "3",
+      name: "Rohan Desai",
+      rating: 5,
+      date: "3 weeks ago",
+      comment: "Perfect for busy professionals! Got actionable advice in just 20 minutes. My LinkedIn profile now attracts the right opportunities.",
+      initials: "RD",
+    },
+  ],
+  "pm-roadmap": [
+    {
+      id: "1",
+      name: "Aditya Verma",
+      rating: 5,
+      date: "1 week ago",
+      comment: "Comprehensive roadmap with all the resources I need! This guide helped me understand the PM role better and plan my transition. Great value for money.",
+      initials: "AV",
+    },
+    {
+      id: "2",
+      name: "Shreya Iyer",
+      rating: 4,
+      date: "2 weeks ago",
+      comment: "Well-structured and practical. The frameworks and templates are really useful. This is exactly what I needed to start my PM journey.",
+      initials: "SI",
+    },
+    {
+      id: "3",
+      name: "Manish Agarwal",
+      rating: 5,
+      date: "1 month ago",
+      comment: "Excellent resource! The step-by-step approach makes transitioning to PM less overwhelming. Highly recommend to anyone considering this career path.",
+      initials: "MA",
+    },
+  ],
+  "linkedin-guide": [
+    {
+      id: "1",
+      name: "Kavita Shah",
+      rating: 4,
+      date: "1 week ago",
+      comment: "Comprehensive guide with practical tips! Learned how to write a compelling headline and optimize my profile for job searches. Very helpful!",
+      initials: "KS",
+    },
+    {
+      id: "2",
+      name: "Rajesh Nair",
+      rating: 5,
+      date: "2 weeks ago",
+      comment: "Great guide! The examples and templates are really useful. My LinkedIn profile is now much more professional and I'm getting more visibility.",
+      initials: "RN",
+    },
+    {
+      id: "3",
+      name: "Pooja Mehta",
+      rating: 4,
+      date: "3 weeks ago",
+      comment: "Worth the investment! Clear instructions and actionable advice. My profile views have increased and I'm connecting with the right people.",
+      initials: "PM",
+    },
+  ],
+  "mentorship-package-30": [
+    {
+      id: "1",
+      name: "Siddharth Kapoor",
+      rating: 5,
+      date: "2 weeks ago",
+      comment: "Amazing package! The career guidance session helped me identify my path, and the mock interview was incredibly valuable. The mentor provided honest feedback that helped me improve significantly.",
+      initials: "SK",
+    },
+    {
+      id: "2",
+      name: "Isha Chawla",
+      rating: 5,
+      date: "1 month ago",
+      comment: "Comprehensive mentorship package! Got career clarity, interview practice, and ongoing support. The mentor is knowledgeable and genuinely cares about your success.",
+      initials: "IC",
+    },
+    {
+      id: "3",
+      name: "Varun Thakur",
+      rating: 4,
+      date: "3 weeks ago",
+      comment: "Great value! The sessions are well-structured and the mentor provides practical advice. The mock interview was particularly helpful in building my confidence.",
+      initials: "VT",
+    },
+  ],
+  "interview-prep-package": [
+    {
+      id: "1",
+      name: "Nisha Agarwal",
+      rating: 5,
+      date: "1 week ago",
+      comment: "Best deal! This package prepared me thoroughly for my interviews. The resume review, career guidance, and interview prep were all excellent. I aced my interview!",
+      initials: "NA",
+    },
+    {
+      id: "2",
+      name: "Abhishek Menon",
+      rating: 5,
+      date: "2 weeks ago",
+      comment: "Perfect package for interview preparation! The mentor covered everything from resume optimization to answering tough questions. Highly recommend!",
+      initials: "AM",
+    },
+    {
+      id: "3",
+      name: "Tanvi Deshmukh",
+      rating: 5,
+      date: "3 weeks ago",
+      comment: "Excellent value! Got comprehensive interview preparation at a great price. The mentor's tips and mock practice sessions were invaluable. Got the job!",
+      initials: "TD",
+    },
+  ],
+  "mentorship-package-weekly": [
+    {
+      id: "1",
+      name: "Rohit Malhotra",
+      rating: 5,
+      date: "2 weeks ago",
+      comment: "Outstanding mentorship program! The weekly sessions keep me accountable and on track. The mentor provides personalized guidance and has helped me make significant progress in my career.",
+      initials: "RM",
+    },
+    {
+      id: "2",
+      name: "Ananya Reddy",
+      rating: 5,
+      date: "1 month ago",
+      comment: "Best investment in my career! The consistent mentorship has been transformative. The mentor understands my goals and provides tailored advice every week.",
+      initials: "AR",
+    },
+    {
+      id: "3",
+      name: "Harsh Shah",
+      rating: 5,
+      date: "3 weeks ago",
+      comment: "Highly recommend! The weekly sessions provide ongoing support and guidance. The mentor is experienced, patient, and genuinely invested in your success. Worth every rupee!",
+      initials: "HS",
+    },
+  ],
+};
+
 const ServiceDetail = () => {
   const { serviceId } = useParams<{ serviceId: string }>();
   const service = serviceId ? serviceData[serviceId] : null;
+  const reviews = serviceId ? serviceReviews[serviceId] || [] : [];
+  
+  // Calculate overall rating from reviews
+  const overallRating = reviews.length > 0
+    ? reviews.reduce((sum, review) => sum + review.rating, 0) / reviews.length
+    : service?.rating || 0;
 
   if (!service) {
     return (
@@ -171,14 +425,44 @@ const ServiceDetail = () => {
             {/* Left Column - Service Details (40%) */}
             <div className="lg:col-span-2">
               <div className="lg:sticky lg:top-24">
-                {/* Back Button */}
-                <Link
-                  to="/mentorship"
-                  className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground mb-8 transition-colors"
-                >
-                  <ArrowLeft className="w-4 h-4" />
-                  Back to Mentorship
-                </Link>
+                {/* Back Button and Rating Row */}
+                <div className="flex items-center justify-between mb-8">
+                  <Link
+                    to="/mentorship"
+                    className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors"
+                  >
+                    <ArrowLeft className="w-4 h-4" />
+                    Back to Mentorship
+                  </Link>
+                  
+                  {/* Overall Rating */}
+                  {(overallRating > 0 || reviews.length > 0) && (
+                    <div className="flex items-center gap-2">
+                      <div className="flex items-center gap-1">
+                        {[...Array(5)].map((_, i) => (
+                          <Star
+                            key={i}
+                            className={`w-4 h-4 ${
+                              i < Math.round(overallRating)
+                                ? "fill-foreground text-foreground"
+                                : "fill-muted text-muted-foreground"
+                            }`}
+                          />
+                        ))}
+                      </div>
+                      <div className="flex items-baseline gap-1.5">
+                        <span className="font-display font-bold text-base">
+                          {overallRating.toFixed(1)}
+                        </span>
+                        {reviews.length > 0 && (
+                          <span className="text-xs text-muted-foreground">
+                            ({reviews.length})
+                          </span>
+                        )}
+                      </div>
+                    </div>
+                  )}
+                </div>
 
                 {/* Service Title */}
                 <h1 className="font-display font-bold text-3xl lg:text-4xl tracking-tight mb-6">
@@ -210,14 +494,6 @@ const ServiceDetail = () => {
                   )}
                 </div>
 
-                {/* Rating */}
-                {service.rating && (
-                  <div className="flex items-center gap-2 mb-8">
-                    <Star className="w-5 h-5 fill-foreground text-foreground" />
-                    <span className="font-medium">{service.rating}</span>
-                  </div>
-                )}
-
                 {/* Package Included Services */}
                 {service.type === "Package" && service.includedServices && service.includedServices.length > 0 && (
                   <div className="mb-8">
@@ -245,11 +521,58 @@ const ServiceDetail = () => {
                 )}
 
                 {/* Description */}
-                <div className="prose prose-sm max-w-none">
+                <div className="prose prose-sm max-w-none mb-8">
                   <p className="text-muted-foreground text-base leading-relaxed">
                     {service.fullDescription || service.description}
                   </p>
                 </div>
+
+                {/* Student Reviews Section */}
+                {reviews.length > 0 && (
+                  <div className="mt-8">
+                    <h2 className="font-display font-bold text-xl mb-6">Student Reviews</h2>
+                    <div className="space-y-4">
+                      {reviews.map((review) => (
+                        <Card key={review.id} className="rounded-none border-border">
+                          <CardContent className="p-4">
+                            <div className="flex items-start gap-4">
+                              <Avatar className="h-10 w-10 rounded-none bg-muted overflow-hidden">
+                                <AvatarFallback className="bg-muted text-foreground font-medium rounded-none">
+                                  {review.initials}
+                                </AvatarFallback>
+                              </Avatar>
+                              <div className="flex-1 min-w-0">
+                                <div className="flex items-start justify-between gap-4 mb-2">
+                                  <div>
+                                    <h3 className="font-medium text-sm mb-1">{review.name}</h3>
+                                    <div className="flex items-center gap-1">
+                                      {[...Array(5)].map((_, i) => (
+                                        <Star
+                                          key={i}
+                                          className={`w-3.5 h-3.5 ${
+                                            i < review.rating
+                                              ? "fill-foreground text-foreground"
+                                              : "fill-muted text-muted-foreground"
+                                          }`}
+                                        />
+                                      ))}
+                                    </div>
+                                  </div>
+                                  <span className="text-xs text-muted-foreground whitespace-nowrap">
+                                    {review.date}
+                                  </span>
+                                </div>
+                                <p className="text-sm text-muted-foreground leading-relaxed">
+                                  {review.comment}
+                                </p>
+                              </div>
+                            </div>
+                          </CardContent>
+                        </Card>
+                      ))}
+                    </div>
+                  </div>
+                )}
               </div>
             </div>
 
