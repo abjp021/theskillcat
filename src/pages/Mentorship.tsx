@@ -7,7 +7,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Linkedin, Twitter, CheckCircle2, Sparkles, ArrowRight, Star, Calendar } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { CALENDLY_URL } from "@/lib/constants";
-import { CatEyeMinimal, CatPawFilled, PlayfulCat } from "@/components/CatGraphics";
+import { CatEyeMinimal, CatWhiskers, CatPawFilled, CatSilhouette } from "@/components/CatGraphics";
 interface Mentor {
   id: string;
   name: string;
@@ -169,14 +169,17 @@ const Mentorship = () => {
       <Navigation />
 
       {/* Cat-themed decorative elements */}
-      <div className="absolute top-28 right-4 lg:right-16 opacity-15 pointer-events-none">
-        <PlayfulCat size={180} className="text-foreground" />
+      <div className="absolute top-32 right-0 lg:right-12 opacity-10 pointer-events-none">
+        <CatSilhouette size={200} className="text-foreground" />
       </div>
-      <div className="absolute bottom-32 left-8 opacity-10 pointer-events-none hidden lg:block rotate-12">
-        <CatPawFilled size={50} className="text-foreground" />
+      <div className="absolute top-1/2 left-0 opacity-5 pointer-events-none hidden lg:block">
+        <CatWhiskers size={180} className="text-foreground -rotate-12" />
       </div>
-      <div className="absolute bottom-48 left-20 opacity-5 pointer-events-none hidden lg:block -rotate-12">
-        <CatPawFilled size={35} className="text-foreground" />
+      <div className="absolute bottom-48 right-8 opacity-10 pointer-events-none hidden lg:block">
+        <CatPawFilled size={60} className="text-foreground rotate-12" />
+      </div>
+      <div className="absolute bottom-96 right-24 opacity-5 pointer-events-none hidden lg:block">
+        <CatPawFilled size={40} className="text-foreground -rotate-6" />
       </div>
 
       {/* Main Content - 40:60 Ratio Layout */}

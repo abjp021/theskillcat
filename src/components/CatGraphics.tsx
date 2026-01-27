@@ -1,91 +1,10 @@
-// Cat-themed decorative graphics
-// Playful yet bold style with expressive character
+// Abstract cat-themed decorative graphics
+// Minimalist, sharp, and symbolic - never cartoonish
 
 interface CatGraphicProps {
   className?: string;
   size?: number;
 }
-
-// Playful falling cat with paws up and motion lines
-export const PlayfulCat = ({ className = "", size = 200 }: CatGraphicProps) => {
-  return (
-    <svg
-      width={size}
-      height={size * 1.2}
-      viewBox="0 0 200 240"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-      className={className}
-    >
-      {/* Motion lines - top paws */}
-      <g className="animate-pulse-subtle">
-        <line x1="55" y1="10" x2="55" y2="25" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
-        <line x1="65" y1="8" x2="65" y2="23" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
-        <line x1="75" y1="10" x2="75" y2="25" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
-        
-        <line x1="125" y1="10" x2="125" y2="25" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
-        <line x1="135" y1="8" x2="135" y2="23" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
-        <line x1="145" y1="10" x2="145" y2="25" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
-      </g>
-      
-      {/* Top paws */}
-      <ellipse cx="65" cy="35" rx="10" ry="8" fill="currentColor" />
-      <ellipse cx="135" cy="35" rx="10" ry="8" fill="currentColor" />
-      
-      {/* Arms */}
-      <rect x="60" y="40" width="8" height="25" rx="4" fill="currentColor" />
-      <rect x="132" y="40" width="8" height="25" rx="4" fill="currentColor" />
-      
-      {/* Whiskers */}
-      <g className="animate-pulse-subtle" style={{ animationDelay: '0.5s' }}>
-        <line x1="50" y1="85" x2="70" y2="90" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
-        <line x1="48" y1="95" x2="68" y2="95" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
-        <line x1="50" y1="105" x2="70" y2="100" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
-        
-        <line x1="150" y1="85" x2="130" y2="90" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
-        <line x1="152" y1="95" x2="132" y2="95" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
-        <line x1="150" y1="105" x2="130" y2="100" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
-      </g>
-      
-      {/* Head */}
-      <ellipse cx="100" cy="90" rx="35" ry="30" fill="currentColor" />
-      
-      {/* Ears */}
-      <path d="M70 65L80 85L60 80Z" fill="currentColor" />
-      <path d="M130 65L120 85L140 80Z" fill="currentColor" />
-      
-      {/* Eyes */}
-      <circle cx="88" cy="85" r="10" fill="hsl(var(--background))" />
-      <circle cx="112" cy="85" r="10" fill="hsl(var(--background))" />
-      <circle cx="90" cy="87" r="4" fill="currentColor" />
-      <circle cx="114" cy="87" r="4" fill="currentColor" />
-      
-      {/* Body */}
-      <ellipse cx="100" cy="145" rx="30" ry="40" fill="currentColor" />
-      
-      {/* Side paws with motion lines */}
-      <g className="animate-pulse-subtle" style={{ animationDelay: '0.3s' }}>
-        <line x1="45" y1="130" x2="55" y2="125" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
-        <line x1="43" y1="140" x2="53" y2="140" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
-        <line x1="45" y1="150" x2="55" y2="155" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
-        
-        <line x1="155" y1="130" x2="145" y2="125" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
-        <line x1="157" y1="140" x2="147" y2="140" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
-        <line x1="155" y1="150" x2="145" y2="155" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
-      </g>
-      
-      {/* Side paws */}
-      <ellipse cx="65" cy="140" rx="10" ry="8" fill="currentColor" />
-      <ellipse cx="135" cy="140" rx="10" ry="8" fill="currentColor" />
-      
-      {/* Tail */}
-      <path 
-        d="M100 185 Q100 210 120 220 Q145 230 150 210 Q155 190 140 185 Q125 180 120 195 Q115 210 100 205" 
-        fill="currentColor"
-      />
-    </svg>
-  );
-};
 
 // Whiskers - abstract diagonal lines suggesting cat whiskers
 export const CatWhiskers = ({ className = "", size = 120 }: CatGraphicProps) => {
