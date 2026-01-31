@@ -133,9 +133,10 @@ const Navigation = () => {
             <a
               href="#courses"
               onClick={(e) => handleSmoothScroll(e, "courses")}
-              className="hidden sm:inline-block bg-foreground text-background px-4 py-2 sm:px-5 sm:py-2.5 text-xs sm:text-sm font-medium transition-all duration-300 hover:bg-foreground/90 hover:scale-105 cursor-pointer"
+              className="hidden sm:inline-block bg-foreground text-background px-4 py-2 sm:px-5 sm:py-2.5 text-xs sm:text-sm font-medium transition-all duration-300 hover:bg-foreground/90 hover:scale-105 hover:shadow-lg hover:shadow-yellow-400/20 cursor-pointer relative overflow-hidden group"
             >
-              Start Learning
+              <div className="absolute inset-0 bg-gradient-to-r from-yellow-400/0 via-yellow-400/10 to-yellow-400/0 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+              <span className="relative z-10">Start Learning</span>
             </a>
             
             {/* Mobile Menu */}

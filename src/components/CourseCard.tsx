@@ -27,7 +27,7 @@ const CourseCard = ({
   return (
     <Link
       to={`/course/${id}`}
-      className={`group block border border-border p-4 sm:p-5 md:p-6 lg:p-8 bg-background transition-all duration-300 hover:shadow-lg hover:border-foreground/50 h-full flex flex-col ${
+      className={`group block border border-border p-4 sm:p-5 md:p-6 lg:p-8 bg-background transition-all duration-300 hover:shadow-lg hover:shadow-yellow-400/10 hover:border-yellow-400/30 h-full flex flex-col relative ${
         featured ? "lg:col-span-2" : ""
       }`}
     >
@@ -44,14 +44,14 @@ const CourseCard = ({
             {status}
           </span>
           {featured && (
-            <span className="inline-block border border-foreground px-2 py-0.5 sm:px-3 sm:py-1 text-[10px] sm:text-xs font-medium tracking-wider uppercase bg-foreground text-background">
+            <span className="inline-block border border-yellow-400/50 px-2 py-0.5 sm:px-3 sm:py-1 text-[10px] sm:text-xs font-medium tracking-wider uppercase bg-yellow-400/10 text-yellow-700 dark:text-yellow-400">
               Featured
             </span>
           )}
         </div>
         {rating && (
           <div className="flex items-center gap-0.5 sm:gap-1 text-xs sm:text-sm">
-            <Star className="w-3.5 h-3.5 sm:w-4 sm:h-4 fill-foreground text-foreground" />
+            <Star className="w-3.5 h-3.5 sm:w-4 sm:h-4 fill-yellow-400 text-yellow-400 group-hover:fill-yellow-500 group-hover:text-yellow-500 transition-colors" />
             <span className="font-medium">{rating}</span>
           </div>
         )}

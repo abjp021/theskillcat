@@ -32,14 +32,14 @@ const Blogs = () => {
       <Navigation />
 
       <section className="pt-6 sm:pt-8 lg:pt-10 pb-4 sm:pb-6 lg:pb-8 border-b border-border relative overflow-hidden">
-        {/* Decorative background elements */}
-        <div className="absolute top-0 right-0 w-96 h-96 bg-foreground/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" />
-        <div className="absolute bottom-0 left-0 w-64 h-64 bg-foreground/5 rounded-full blur-2xl translate-y-1/2 -translate-x-1/2" />
+        {/* Decorative background elements with yellow accents */}
+        <div className="absolute top-0 right-0 w-96 h-96 bg-yellow-400/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" />
+        <div className="absolute bottom-0 left-0 w-64 h-64 bg-yellow-400/8 rounded-full blur-2xl translate-y-1/2 -translate-x-1/2" />
         
         <div className="container mx-auto px-4 sm:px-6 lg:px-12 relative z-10">
           <div className="max-w-4xl">
             <div className="inline-flex items-center gap-2 mb-3">
-              <div className="w-1 h-6 bg-foreground" />
+              <div className="w-1 h-6 bg-yellow-400" />
               <p className="text-[10px] sm:text-xs font-medium uppercase tracking-[0.2em] text-muted-foreground">
                 Blog
               </p>
@@ -60,13 +60,13 @@ const Blogs = () => {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5 lg:gap-6">
             {blogs.map((blog, index) => (
               <Link key={blog.id} to={`/blogs/${blog.id}`}>
-                <Card className="h-full border-border/50 hover:border-foreground/60 hover:shadow-xl transition-all duration-300 group overflow-hidden relative bg-card">
-                  {/* Decorative accent */}
-                  <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-foreground/20 via-foreground/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+                <Card className="h-full border-border/50 hover:border-yellow-400/30 hover:shadow-xl hover:shadow-yellow-400/10 transition-all duration-300 group overflow-hidden relative bg-card">
+                  {/* Decorative accent with yellow */}
+                  <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-yellow-400/60 via-yellow-400/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
                   
                   <CardHeader className="pb-3 p-5">
                     <div className="flex items-center justify-between gap-2 mb-3">
-                      <Badge variant="outline" className="text-[11px] border-foreground/20 group-hover:border-foreground/40 transition-colors">
+                      <Badge variant="outline" className="text-[11px] border-foreground/20 group-hover:border-yellow-400/50 transition-colors">
                         {blog.tag}
                       </Badge>
                       <span className="text-[11px] text-muted-foreground">{blog.date}</span>
@@ -82,7 +82,7 @@ const Blogs = () => {
                     <div className="flex items-center gap-2 text-[11px] font-medium text-muted-foreground group-hover:text-foreground transition-colors">
                       <span>{blog.readTime}</span>
                       <span>•</span>
-                      <span className="underline underline-offset-2">Read article</span>
+                      <span className="underline underline-offset-2 group-hover:text-yellow-400 transition-colors">Read article</span>
                     </div>
                   </CardContent>
                 </Card>

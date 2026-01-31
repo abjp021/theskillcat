@@ -30,23 +30,25 @@ const CatEyeLogo = ({ className = "", size = 120 }: { className?: string; size?:
         style={{ strokeDasharray: 160, strokeDashoffset: 160 }}
       />
       
-      {/* Vertical slit (pupil) */}
+      {/* Vertical slit (pupil) - Yellow eye */}
       <ellipse
         cx="60"
         cy="60"
         rx="4"
         ry="20"
-        fill="currentColor"
-        className="animate-pulse-subtle"
-        style={{ animationDelay: '1s' }}
+        style={{ 
+          fill: 'hsl(var(--yellow-400))'
+        }}
       />
       
       {/* Sharp corners - top */}
       <path
         d="M60 35L55 25L60 20L65 25L60 35"
         fill="currentColor"
-        className="animate-fade-in animation-delay-400"
-        style={{ opacity: 0 }}
+        className="cat-eye-blink-top"
+        style={{ 
+          transformOrigin: '60px 30px'
+        }}
       />
     </svg>
   );

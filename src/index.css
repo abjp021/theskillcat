@@ -48,6 +48,18 @@
     /* Custom tokens */
     --font-display: 'Syne', sans-serif;
     --font-body: 'Inter', sans-serif;
+    
+    /* Yellow accent colors - Light theme: Mustard gold */
+    --yellow-50: 45 100% 95%;
+    --yellow-100: 45 100% 88%;
+    --yellow-200: 45 95% 78%;
+    --yellow-300: 45 90% 65%;
+    --yellow-400: 45 85% 55%; /* Mustard gold */
+    --yellow-500: 45 80% 48%; /* Deeper mustard */
+    --yellow-600: 45 75% 42%;
+    --yellow-700: 45 70% 35%;
+    --yellow-800: 45 65% 28%;
+    --yellow-900: 45 60% 22%;
   }
 
   .dark {
@@ -87,6 +99,18 @@
     --sidebar-accent-foreground: 0 0% 95%;
     --sidebar-border: 0 0% 15%;
     --sidebar-ring: 0 0% 50%;
+    
+    /* Yellow accent colors - Dark theme: Bright yellow */
+    --yellow-50: 55 100% 98%;
+    --yellow-100: 55 100% 95%;
+    --yellow-200: 55 100% 90%;
+    --yellow-300: 55 100% 85%;
+    --yellow-400: 55 100% 75%; /* Bright yellow */
+    --yellow-500: 55 100% 65%; /* Vibrant yellow */
+    --yellow-600: 55 95% 55%;
+    --yellow-700: 55 90% 45%;
+    --yellow-800: 55 85% 35%;
+    --yellow-900: 55 80% 25%;
   }
 }
 
@@ -125,7 +149,7 @@
 
   .link-underline::after {
     content: '';
-    @apply absolute w-full h-px bottom-0 left-0 bg-foreground origin-bottom-right transition-transform duration-300 scale-x-0;
+    @apply absolute w-full h-px bottom-0 left-0 bg-yellow-400 origin-bottom-right transition-transform duration-300 scale-x-0;
   }
 
   .link-underline:hover::after {
@@ -276,5 +300,88 @@
   .scrollbar-hide {
     -ms-overflow-style: none;  /* IE and Edge */
     scrollbar-width: none;  /* Firefox */
+  }
+
+  /* Cat eye blinking animation - entire eyelid blinks every 5 seconds */
+  @keyframes catEyeBlink {
+    0%, 94% {
+      transform: scaleY(1);
+      opacity: 0;
+    }
+    95% {
+      transform: scaleY(0.5);
+      opacity: 0.5;
+    }
+    96% {
+      transform: scaleY(0.1);
+      opacity: 0.9;
+    }
+    96.5% {
+      transform: scaleY(0);
+      opacity: 1;
+    }
+    97.5% {
+      transform: scaleY(0);
+      opacity: 1;
+    }
+    98% {
+      transform: scaleY(0.1);
+      opacity: 0.9;
+    }
+    99% {
+      transform: scaleY(0.5);
+      opacity: 0.5;
+    }
+    100% {
+      transform: scaleY(1);
+      opacity: 0;
+    }
+  }
+
+  .cat-eye-blink {
+    animation: catEyeBlink 5s ease-in-out infinite;
+    will-change: transform, opacity;
+  }
+
+  /* Upper white line animation - moves down and fades during blink */
+  @keyframes catEyeBlinkTop {
+    0%, 94% {
+      transform: translateY(0);
+      opacity: 1;
+    }
+    95% {
+      transform: translateY(8px);
+      opacity: 0.6;
+    }
+    96% {
+      transform: translateY(20px);
+      opacity: 0.2;
+    }
+    96.5% {
+      transform: translateY(30px);
+      opacity: 0;
+    }
+    97.5% {
+      transform: translateY(30px);
+      opacity: 0;
+    }
+    98% {
+      transform: translateY(20px);
+      opacity: 0.2;
+    }
+    99% {
+      transform: translateY(8px);
+      opacity: 0.6;
+    }
+    100% {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+
+  .cat-eye-blink-top {
+    animation: catEyeBlinkTop 5s ease-in-out infinite !important;
+    will-change: transform, opacity;
+    transform-origin: center;
   }
 }

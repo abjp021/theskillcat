@@ -420,7 +420,7 @@ const ServiceDetail = () => {
       <Navigation />
 
       {/* Service Detail Page - Split Layout */}
-      <section className="pt-24 sm:pt-28 md:pt-32 lg:pt-40 pb-12 sm:pb-16 lg:pb-24">
+      <section className="pt-6 sm:pt-8 lg:pt-10 pb-12 sm:pb-16 lg:pb-24">
         <div className="container mx-auto px-4 sm:px-6 lg:px-12">
           <div className="grid grid-cols-1 lg:grid-cols-5 gap-6 sm:gap-8 md:gap-12 lg:gap-16">
             {/* Left Column - Service Details (40%) */}
@@ -430,9 +430,9 @@ const ServiceDetail = () => {
                 <div className="flex items-center justify-between mb-4 sm:mb-6 md:mb-8">
                   <Link
                     to="/mentorship"
-                    className="inline-flex items-center gap-1.5 sm:gap-2 text-xs sm:text-sm text-muted-foreground hover:text-foreground transition-colors"
+                    className="inline-flex items-center gap-1.5 sm:gap-2 text-xs sm:text-sm text-muted-foreground hover:text-foreground transition-colors link-underline group"
                   >
-                    <ArrowLeft className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
+                    <ArrowLeft className="w-3.5 h-3.5 sm:w-4 sm:h-4 group-hover:text-yellow-400 transition-colors" />
                     <span className="hidden sm:inline">Back to Mentorship</span>
                     <span className="sm:hidden">Back</span>
                   </Link>
@@ -446,7 +446,7 @@ const ServiceDetail = () => {
                             key={i}
                             className={`w-3 h-3 sm:w-4 sm:h-4 ${
                               i < Math.round(overallRating)
-                                ? "fill-foreground text-foreground"
+                                ? "fill-yellow-400 text-yellow-400"
                                 : "fill-muted text-muted-foreground"
                             }`}
                           />
@@ -500,9 +500,9 @@ const ServiceDetail = () => {
                 {service.type === "Package" && service.includedServices && service.includedServices.length > 0 && (
                   <div className="mb-6 sm:mb-8">
                     <h2 className="font-display font-bold text-lg sm:text-xl mb-3 sm:mb-4">What's Included</h2>
-                    <div className="space-y-0 border border-border rounded-lg overflow-hidden">
+                    <div className="space-y-0 border border-border hover:border-yellow-400/30 transition-colors rounded-lg overflow-hidden">
                       {service.includedServices.map((included, index) => (
-                        <div key={index} className="py-2.5 sm:py-3 px-3 sm:px-4 border-b border-border last:border-b-0 bg-card">
+                        <div key={index} className="py-2.5 sm:py-3 px-3 sm:px-4 border-b border-border last:border-b-0 bg-card hover:bg-yellow-400/5 transition-colors">
                           <div className="flex items-start justify-between gap-3 sm:gap-4">
                             <div className="flex-1 min-w-0">
                               <div className="text-xs sm:text-sm font-medium text-foreground mb-0.5 sm:mb-1">
@@ -535,7 +535,7 @@ const ServiceDetail = () => {
                     <h2 className="font-display font-bold text-lg sm:text-xl mb-4 sm:mb-6">Student Reviews</h2>
                     <div className="space-y-3 sm:space-y-4">
                       {reviews.map((review) => (
-                        <Card key={review.id} className="rounded-none border-border">
+                        <Card key={review.id} className="rounded-none border-border hover:border-yellow-400/30 hover:shadow-lg hover:shadow-yellow-400/10 transition-all">
                           <CardContent className="p-3 sm:p-4">
                             <div className="flex items-start gap-3 sm:gap-4">
                               <Avatar className="h-8 w-8 sm:h-10 sm:w-10 rounded-none bg-muted overflow-hidden">
@@ -553,7 +553,7 @@ const ServiceDetail = () => {
                                           key={i}
                                           className={`w-3 h-3 sm:w-3.5 sm:h-3.5 ${
                                             i < review.rating
-                                              ? "fill-foreground text-foreground"
+                                              ? "fill-yellow-400 text-yellow-400"
                                               : "fill-muted text-muted-foreground"
                                           }`}
                                         />
@@ -580,7 +580,7 @@ const ServiceDetail = () => {
 
             {/* Right Column - Calendly/Scheduling (60%) */}
             <div className="lg:col-span-3">
-              <Card className="border-border">
+              <Card className="border-border hover:border-yellow-400/30 hover:shadow-lg hover:shadow-yellow-400/10 transition-all">
                 <CardContent className="p-4 sm:p-6 md:p-8">
                   {service.type === "1:1 Call" || service.type === "Package" ? (
                     <>
@@ -618,9 +618,10 @@ const ServiceDetail = () => {
                       </p>
                       <Button
                         size="lg"
-                        className="bg-foreground text-background hover:opacity-90"
+                        className="bg-foreground text-background hover:opacity-90 hover:shadow-lg hover:shadow-yellow-400/20 relative overflow-hidden group"
                       >
-                        Purchase for ₹{service.price.toLocaleString()}
+                        <div className="absolute inset-0 bg-gradient-to-r from-yellow-400/0 via-yellow-400/10 to-yellow-400/0 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                        <span className="relative z-10">Purchase for ₹{service.price.toLocaleString()}</span>
                       </Button>
                     </div>
                   )}
