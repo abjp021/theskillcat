@@ -52,10 +52,11 @@ const MentorshipSection = () => {
             <Link to="/mentorship">
               <Button
                 size="lg"
-                className="bg-foreground text-background hover:opacity-90 group w-full sm:w-auto"
+                className="bg-foreground text-background hover:opacity-90 hover:shadow-lg hover:shadow-yellow-400/20 group w-full sm:w-auto relative overflow-hidden"
               >
-                Book a Session
-                <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
+                <div className="absolute inset-0 bg-gradient-to-r from-yellow-400/0 via-yellow-400/10 to-yellow-400/0 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                <span className="relative z-10">Book a Session</span>
+                <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 group-hover:text-yellow-300 transition-all relative z-10" />
               </Button>
             </Link>
           </div>
@@ -64,7 +65,7 @@ const MentorshipSection = () => {
           <div className="space-y-4 sm:space-y-6">
             {/* Benefits - Vertical Stack */}
             <div className="space-y-2 sm:space-y-3">
-              <div className="group p-3 sm:p-4 border border-border rounded-lg bg-background hover:border-foreground/50 transition-all duration-300 hover:shadow-lg">
+              <div className="group p-3 sm:p-4 border border-border rounded-lg bg-background hover:border-yellow-400/30 transition-all duration-300 hover:shadow-lg hover:shadow-yellow-400/10">
                 <div className="flex items-start gap-2.5 sm:gap-3">
                   <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-xl bg-foreground text-background flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform">
                     <MessageSquare className="w-4 h-4 sm:w-5 sm:h-5" />

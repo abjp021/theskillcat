@@ -25,6 +25,8 @@ const LaunchOfferStrip = () => {
 
   return (
     <div className={`${stripBg} ${stripText} py-2 text-xs sm:text-sm font-medium overflow-hidden relative z-[60] sticky top-0`}>
+      {/* Yellow accent line */}
+      <div className="absolute top-0 left-0 right-0 h-0.5 bg-yellow-400" />
       <div className="flex animate-marquee whitespace-nowrap w-[200%]">
         {/* Repeat content for seamless loop */}
         {Array.from({ length: 2 }).map((_, i) => (

@@ -218,9 +218,9 @@ const Mentorship = () => {
       <section className="pt-12 pb-0 sm:pt-16 sm:pb-12 lg:pt-20 lg:pb-16 relative z-10 min-h-screen">
         {/* Mobile: Mentor Profile Section - Carousel */}
         <div className="lg:hidden bg-gradient-to-b from-background to-muted/20 pb-6 pt-4 px-0 relative overflow-hidden">
-          {/* Decorative background elements */}
-          <div className="absolute top-0 right-0 w-64 h-64 bg-foreground/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" />
-          <div className="absolute bottom-0 left-0 w-48 h-48 bg-foreground/5 rounded-full blur-2xl translate-y-1/2 -translate-x-1/2" />
+          {/* Decorative background elements with yellow accents */}
+          <div className="absolute top-0 right-0 w-64 h-64 bg-yellow-400/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" />
+          <div className="absolute bottom-0 left-0 w-48 h-48 bg-yellow-400/8 rounded-full blur-2xl translate-y-1/2 -translate-x-1/2" />
           
           {mentors.length > 0 && (
             <div className="w-full relative z-10">
@@ -247,9 +247,9 @@ const Mentorship = () => {
                       key={mentor.id} 
                       className="flex-shrink-0 w-full px-4"
                     >
-                      <Card className="w-full rounded-2xl border-0 shadow-xl hover:shadow-2xl transition-all duration-300 overflow-hidden bg-gradient-to-br from-card via-card to-muted/30 relative">
-                        {/* Decorative corner accent */}
-                        <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-foreground/10 to-transparent rounded-bl-full opacity-50" />
+                      <Card className="w-full rounded-2xl border-0 shadow-xl hover:shadow-2xl hover:shadow-yellow-400/20 transition-all duration-300 overflow-hidden bg-gradient-to-br from-card via-card to-muted/30 relative">
+                        {/* Decorative corner accent with yellow */}
+                        <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-yellow-400/20 to-transparent rounded-bl-full opacity-50" />
                         
                         <CardHeader className="p-6 pb-5 relative">
                           {/* Top section with avatar and availability */}
@@ -320,12 +320,13 @@ const Mentorship = () => {
                             onClick={(e) => e.stopPropagation()}
                           >
                             <Button
-                              className="w-full bg-gradient-to-r from-foreground to-foreground/90 text-background hover:from-foreground/90 hover:to-foreground/80 font-semibold h-14 shadow-lg rounded-xl transition-all duration-300 group"
+                              className="w-full bg-gradient-to-r from-foreground to-foreground/90 text-background hover:from-foreground/90 hover:to-foreground/80 hover:shadow-yellow-400/20 font-semibold h-14 shadow-lg rounded-xl transition-all duration-300 group relative overflow-hidden"
                               size="lg"
                             >
-                              <Calendar className="w-5 h-5 mr-2 group-hover:scale-110 transition-transform" />
-                              <span>Schedule a Call</span>
-                              <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
+                              <div className="absolute inset-0 bg-gradient-to-r from-yellow-400/0 via-yellow-400/10 to-yellow-400/0 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                              <Calendar className="w-5 h-5 mr-2 group-hover:scale-110 group-hover:text-yellow-300 transition-all relative z-10" />
+                              <span className="relative z-10">Schedule a Call</span>
+                              <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform relative z-10" />
                             </Button>
                           </a>
                         </CardFooter>
@@ -343,8 +344,8 @@ const Mentorship = () => {
                     onClick={() => setCurrentMentorIndex(index)}
                     className={`rounded-full transition-all duration-300 ${
                       index === currentMentorIndex
-                        ? "w-10 h-2.5 bg-foreground shadow-md"
-                        : "w-2.5 h-2.5 bg-muted-foreground/30 hover:bg-muted-foreground/50"
+                        ? "w-10 h-2.5 bg-yellow-400 shadow-md shadow-yellow-400/30"
+                        : "w-2.5 h-2.5 bg-muted-foreground/30 hover:bg-yellow-400/50"
                     }`}
                     aria-label={`Go to mentor ${index + 1}`}
                   />
@@ -365,17 +366,17 @@ const Mentorship = () => {
               
               {/* Mobile: Background, Desktop: Gradient background */}
               <div className="relative p-3 sm:p-4 lg:p-6 overflow-hidden bg-background lg:bg-gradient-to-br lg:from-foreground/8 lg:via-foreground/5 lg:to-foreground/10 border-0 lg:border-2 lg:border-foreground/10 shadow-lg z-10">
-                {/* Decorative background elements - Hidden on mobile for performance */}
-                <div className="hidden sm:block absolute top-0 right-0 w-64 h-64 bg-foreground/15 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" />
-                <div className="hidden sm:block absolute bottom-0 left-0 w-48 h-48 bg-foreground/12 rounded-full blur-2xl translate-y-1/2 -translate-x-1/2" />
-                <div className="hidden sm:block absolute top-1/2 left-1/2 w-32 h-32 bg-foreground/8 rounded-full blur-2xl -translate-x-1/2 -translate-y-1/2" />
+                {/* Decorative background elements with yellow - Hidden on mobile for performance */}
+                <div className="hidden sm:block absolute top-0 right-0 w-64 h-64 bg-yellow-400/15 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" />
+                <div className="hidden sm:block absolute bottom-0 left-0 w-48 h-48 bg-yellow-400/12 rounded-full blur-2xl translate-y-1/2 -translate-x-1/2" />
+                <div className="hidden sm:block absolute top-1/2 left-1/2 w-32 h-32 bg-yellow-400/10 rounded-full blur-2xl -translate-x-1/2 -translate-y-1/2" />
                 
                 {/* Subtle pattern overlay - Hidden on mobile */}
                 <div className="hidden lg:block absolute inset-0 opacity-[0.03] bg-[radial-gradient(circle_at_1px_1px,rgb(0,0,0)_1px,transparent_0)] [background-size:24px_24px]" />
                 
-                {/* Accent lines - Hidden on mobile */}
-                <div className="hidden lg:block absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-foreground/20 to-transparent" />
-                <div className="hidden lg:block absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-foreground/20 to-transparent" />
+                {/* Accent lines with yellow - Hidden on mobile */}
+                <div className="hidden lg:block absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-yellow-400/30 to-transparent" />
+                <div className="hidden lg:block absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-yellow-400/30 to-transparent" />
                 
                 {/* Content wrapper with relative positioning */}
                 <div className="relative z-10 pt-2 lg:pt-0">
@@ -385,25 +386,25 @@ const Mentorship = () => {
                       <TabsList className="bg-background/90 lg:bg-background/80 backdrop-blur-sm h-auto p-1 border border-foreground/10 lg:border-foreground/20 shadow-sm overflow-x-auto rounded-lg lg:rounded-md">
                       <TabsTrigger 
                         value="All" 
-                        className="px-4 py-2 sm:px-4 sm:py-2.5 lg:px-5 text-xs sm:text-sm font-medium data-[state=active]:bg-foreground data-[state=active]:text-background data-[state=active]:shadow-sm transition-all min-w-[60px] sm:min-w-auto rounded-md"
+                        className="px-4 py-2 sm:px-4 sm:py-2.5 lg:px-5 text-xs sm:text-sm font-medium data-[state=active]:bg-foreground data-[state=active]:text-background data-[state=active]:shadow-sm data-[state=active]:shadow-yellow-400/20 transition-all min-w-[60px] sm:min-w-auto rounded-md"
                       >
                         All
                       </TabsTrigger>
                       <TabsTrigger 
                         value="1:1 Call" 
-                        className="px-4 py-2 sm:px-4 sm:py-2.5 lg:px-5 text-xs sm:text-sm font-medium data-[state=active]:bg-foreground data-[state=active]:text-background data-[state=active]:shadow-sm transition-all min-w-[70px] sm:min-w-auto rounded-md"
+                        className="px-4 py-2 sm:px-4 sm:py-2.5 lg:px-5 text-xs sm:text-sm font-medium data-[state=active]:bg-foreground data-[state=active]:text-background data-[state=active]:shadow-sm data-[state=active]:shadow-yellow-400/20 transition-all min-w-[70px] sm:min-w-auto rounded-md"
                       >
                         1:1 Call
                       </TabsTrigger>
                       <TabsTrigger 
                         value="Digital Product" 
-                        className="px-4 py-2 sm:px-4 sm:py-2.5 lg:px-5 text-xs sm:text-sm font-medium data-[state=active]:bg-foreground data-[state=active]:text-background data-[state=active]:shadow-sm transition-all min-w-[100px] sm:min-w-auto rounded-md"
+                        className="px-4 py-2 sm:px-4 sm:py-2.5 lg:px-5 text-xs sm:text-sm font-medium data-[state=active]:bg-foreground data-[state=active]:text-background data-[state=active]:shadow-sm data-[state=active]:shadow-yellow-400/20 transition-all min-w-[100px] sm:min-w-auto rounded-md"
                       >
                         Digital Product
                       </TabsTrigger>
                       <TabsTrigger 
                         value="Package" 
-                        className="px-4 py-2 sm:px-4 sm:py-2.5 lg:px-5 text-xs sm:text-sm font-medium data-[state=active]:bg-foreground data-[state=active]:text-background data-[state=active]:shadow-sm transition-all min-w-[80px] sm:min-w-auto rounded-md"
+                        className="px-4 py-2 sm:px-4 sm:py-2.5 lg:px-5 text-xs sm:text-sm font-medium data-[state=active]:bg-foreground data-[state=active]:text-background data-[state=active]:shadow-sm data-[state=active]:shadow-yellow-400/20 transition-all min-w-[80px] sm:min-w-auto rounded-md"
                       >
                         Package
                       </TabsTrigger>
@@ -416,10 +417,10 @@ const Mentorship = () => {
                       {filteredServices.map((service) => (
                         <Link key={service.id} to={`/mentorship/service/${service.id}`}>
                           <Card 
-                            className="rounded-none border-border hover:border-foreground/50 transition-all duration-300 hover:shadow-lg group cursor-pointer h-full bg-background relative overflow-hidden"
+                            className="rounded-none border-border hover:border-yellow-400/30 transition-all duration-300 hover:shadow-lg hover:shadow-yellow-400/10 group cursor-pointer h-full bg-background relative overflow-hidden"
                           >
-                            {/* Subtle accent line on hover */}
-                            <div className="absolute top-0 left-0 right-0 h-1 bg-foreground opacity-0 group-hover:opacity-100 transition-opacity" />
+                            {/* Subtle accent line on hover with yellow */}
+                            <div className="absolute top-0 left-0 right-0 h-1 bg-yellow-400 opacity-0 group-hover:opacity-100 transition-opacity" />
                             
                             
                             <CardContent className="p-3 sm:p-4 flex flex-col h-full">
@@ -433,7 +434,7 @@ const Mentorship = () => {
                                       </span>
                                       {service.rating && (
                                         <div className="flex items-center gap-0.5 sm:gap-1 ml-auto">
-                                          <Star className="w-3 h-3 sm:w-3.5 sm:h-3.5 fill-foreground text-foreground" />
+                                          <Star className="w-3 h-3 sm:w-3.5 sm:h-3.5 fill-yellow-400 text-yellow-400 group-hover:fill-yellow-500 group-hover:text-yellow-500 transition-colors" />
                                           <span className="text-[10px] sm:text-xs font-semibold">{service.rating}</span>
                                         </div>
                                       )}
@@ -458,7 +459,7 @@ const Mentorship = () => {
                                       </span>
                                       {service.rating && (
                                         <div className="flex items-center gap-0.5 sm:gap-1">
-                                          <Star className="w-3 h-3 sm:w-3.5 sm:h-3.5 fill-foreground text-foreground" />
+                                          <Star className="w-3 h-3 sm:w-3.5 sm:h-3.5 fill-yellow-400 text-yellow-400 group-hover:fill-yellow-500 group-hover:text-yellow-500 transition-colors" />
                                           <span className="text-[10px] sm:text-xs font-semibold">{service.rating}</span>
                                         </div>
                                       )}
@@ -521,7 +522,7 @@ const Mentorship = () => {
                                     )}
                                   </div>
                                   {service.bestDeal && (
-                                    <span className="inline-block bg-purple-500 text-white px-1.5 py-0.5 sm:px-2 text-[10px] sm:text-xs font-semibold rounded-full">
+                                    <span className="inline-block bg-yellow-400 text-yellow-900 dark:text-yellow-950 px-1.5 py-0.5 sm:px-2 text-[10px] sm:text-xs font-semibold rounded-full shadow-sm shadow-yellow-400/30">
                                       Best Deal
                                     </span>
                                   )}
@@ -530,9 +531,10 @@ const Mentorship = () => {
                                 <Button
                                   variant="ghost"
                                   size="icon"
-                                  className="w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-foreground text-background hover:opacity-90 group-hover:scale-110 transition-transform flex-shrink-0"
+                                  className="w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-foreground text-background hover:opacity-90 hover:shadow-lg hover:shadow-yellow-400/20 group-hover:scale-110 transition-all flex-shrink-0 relative overflow-hidden group/btn"
                                 >
-                                  <ArrowRight className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
+                                  <div className="absolute inset-0 bg-gradient-to-r from-yellow-400/0 via-yellow-400/10 to-yellow-400/0 opacity-0 group-hover/btn:opacity-100 transition-opacity duration-300" />
+                                  <ArrowRight className="w-3.5 h-3.5 sm:w-4 sm:h-4 relative z-10 group-hover/btn:text-yellow-300 transition-colors" />
                                 </Button>
                               </div>
                             </CardContent>
@@ -565,12 +567,13 @@ const Mentorship = () => {
                     rel="noopener noreferrer"
                   >
                     <Button
-                      className="w-full bg-foreground text-background hover:opacity-90 group/btn h-12 sm:h-auto"
+                      className="w-full bg-foreground text-background hover:opacity-90 hover:shadow-lg hover:shadow-yellow-400/20 group/btn h-12 sm:h-auto relative overflow-hidden"
                       size="lg"
                     >
-                      <Calendar className="w-4 h-4 mr-2" />
-                      Schedule a Call
-                      <ArrowRight className="w-4 h-4 ml-2 group-hover/btn:translate-x-1 transition-transform" />
+                      <div className="absolute inset-0 bg-gradient-to-r from-yellow-400/0 via-yellow-400/10 to-yellow-400/0 opacity-0 group-hover/btn:opacity-100 transition-opacity duration-300" />
+                      <Calendar className="w-4 h-4 mr-2 relative z-10 group-hover/btn:text-yellow-300 transition-colors" />
+                      <span className="relative z-10">Schedule a Call</span>
+                      <ArrowRight className="w-4 h-4 ml-2 group-hover/btn:translate-x-1 transition-transform relative z-10" />
                     </Button>
                   </a>
                 </div>
@@ -580,7 +583,7 @@ const Mentorship = () => {
                   {mentors.map((mentor) => (
                     <Card 
                       key={mentor.id} 
-                      className="rounded-none border-border hover:border-foreground/50 transition-all duration-300 hover:shadow-lg group"
+                      className="rounded-none border-border hover:border-yellow-400/30 transition-all duration-300 hover:shadow-lg hover:shadow-yellow-400/10 group"
                     >
                       <CardHeader className="p-3 sm:p-4 md:p-6 pb-3 sm:pb-4">
                         <div className="flex items-start gap-2.5 sm:gap-3 md:gap-4">
