@@ -44,21 +44,21 @@ const FAQSection = () => {
   const { ref: accordionRef, isVisible: accordionVisible } = useScrollAnimation({ threshold: 0.1 });
 
   return (
-    <section id="faq" className="py-12 lg:py-16 bg-background">
-      <div className="container mx-auto px-6 lg:px-12">
+    <section id="faq" className="py-8 sm:py-12 lg:py-16 bg-background">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-12">
         {/* Section Header */}
         <div
           ref={headerRef}
-          className={`max-w-2xl mb-8 transition-all duration-700 ${
+          className={`max-w-2xl mb-6 sm:mb-8 transition-all duration-700 ${
             headerVisible
               ? "opacity-100 translate-y-0"
               : "opacity-0 translate-y-8"
           }`}
         >
-          <h2 className="font-display font-bold text-3xl lg:text-4xl tracking-tight mb-2">
+          <h2 className="font-display font-bold text-2xl sm:text-3xl lg:text-4xl tracking-tight mb-1.5 sm:mb-2">
             Frequently Asked Questions
           </h2>
-          <p className="text-muted-foreground text-base lg:text-lg">
+          <p className="text-muted-foreground text-sm sm:text-base lg:text-lg">
             Everything you need to know about our programs.
           </p>
         </div>
@@ -75,7 +75,7 @@ const FAQSection = () => {
           <Accordion type="single" collapsible className="w-full">
             {faqs.map((faq) => (
               <AccordionItem key={faq.id} value={`item-${faq.id}`} className="border-border">
-                <AccordionTrigger className="text-left font-display font-semibold">
+                <AccordionTrigger className="text-left font-display font-semibold text-sm sm:text-base">
                   {faq.question}
                 </AccordionTrigger>
                 <AccordionContent className="text-muted-foreground leading-relaxed">

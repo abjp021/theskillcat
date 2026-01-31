@@ -1,4 +1,5 @@
 import CatEyeLogo from "./CatEyeLogo";
+import { BookOpen, Users, Video, Sparkles } from "lucide-react";
 
 const stats = [
   {
@@ -21,39 +22,39 @@ const stats = [
 
 const Hero = () => {
   return (
-    <section className="pt-32 pb-20 lg:pt-40 lg:pb-24 flex items-center justify-center relative overflow-hidden bg-background">
+    <section id="hero" className="pt-4 pb-8 sm:pt-6 sm:pb-12 md:pt-8 md:pb-16 lg:pt-12 lg:pb-20 flex items-center justify-center relative overflow-hidden bg-background">
       {/* Subtle diagonal lines background */}
       <div className="absolute inset-0 diagonal-stripes opacity-30" />
       
-      {/* Abstract angular shapes */}
-      <div className="absolute top-20 right-10 lg:right-32 w-px h-32 bg-foreground/20 rotate-45" />
-      <div className="absolute bottom-32 left-10 lg:left-32 w-px h-48 bg-foreground/20 -rotate-12" />
-      <div className="absolute top-1/3 left-1/4 w-24 h-px bg-foreground/10" />
+      {/* Abstract angular shapes - Hidden on mobile for performance */}
+      <div className="hidden sm:block absolute top-20 right-10 lg:right-32 w-px h-32 bg-foreground/20 rotate-45" />
+      <div className="hidden sm:block absolute bottom-32 left-10 lg:left-32 w-px h-48 bg-foreground/20 -rotate-12" />
+      <div className="hidden sm:block absolute top-1/3 left-1/4 w-24 h-px bg-foreground/10" />
       
-      <div className="container mx-auto px-6 lg:px-12 relative z-10">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-12 relative z-10">
         <div className="max-w-4xl mx-auto text-center">
           {/* Cat Eye Logo */}
-          <div className="mb-8 lg:mb-12 flex justify-center">
-            <CatEyeLogo size={80} className="lg:w-[100px] lg:h-[100px] text-foreground" />
+          <div className="mb-4 sm:mb-6 lg:mb-8 flex justify-center">
+            <CatEyeLogo size={60} className="sm:w-[80px] sm:h-[80px] lg:w-[100px] lg:h-[100px] text-foreground" />
           </div>
 
           {/* Main Headline */}
-          <h1 className="font-display font-bold text-4xl sm:text-5xl lg:text-7xl tracking-tight mb-6 animate-fade-up">
+          <h1 className="font-display font-bold text-3xl sm:text-4xl md:text-5xl lg:text-7xl tracking-tight mb-3 sm:mb-4 animate-fade-up">
             Your Career Catalyst.
           </h1>
 
           {/* Subheadline */}
-          <p className="font-display font-medium text-xl sm:text-2xl lg:text-3xl mb-4 animate-fade-up animation-delay-200" style={{ opacity: 0 }}>
+          <p className="font-display font-medium text-lg sm:text-xl md:text-2xl lg:text-3xl mb-2 sm:mb-3 animate-fade-up animation-delay-200" style={{ opacity: 0 }}>
             Learn skills. Build leverage. Move forward.
           </p>
 
           {/* Supporting text */}
-          <p className="text-muted-foreground text-base lg:text-lg max-w-xl mx-auto mb-10 lg:mb-12 animate-fade-up animation-delay-400" style={{ opacity: 0 }}>
+          <p className="text-muted-foreground text-sm sm:text-base lg:text-lg max-w-xl mx-auto mb-6 sm:mb-8 lg:mb-10 px-4 sm:px-0 animate-fade-up animation-delay-400" style={{ opacity: 0 }}>
             Live courses and mentorship for real-world careers.
           </p>
 
           {/* CTA Buttons */}
-          <div className="animate-fade-up animation-delay-600 mb-12 lg:mb-16 flex flex-col sm:flex-row items-center justify-center gap-4" style={{ opacity: 0 }}>
+          <div className="animate-fade-up animation-delay-600 mb-6 sm:mb-8 lg:mb-10 flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-3 sm:gap-4 px-4 sm:px-0" style={{ opacity: 0 }}>
             <a
               href="#courses"
               onClick={(e) => {
@@ -69,20 +70,35 @@ const Hero = () => {
                   });
                 }
               }}
-              className="inline-block bg-foreground text-background px-8 py-4 text-sm font-medium tracking-wide transition-all duration-300 hover:scale-105 hover:shadow-lg cursor-pointer"
+              className="group inline-flex items-center justify-center gap-2 bg-foreground text-background px-6 py-3 sm:px-8 sm:py-4 text-sm font-medium tracking-wide transition-all duration-300 hover:scale-105 hover:shadow-xl cursor-pointer text-center"
             >
-              Explore Courses
+              <BookOpen className="w-4 h-4 sm:w-5 sm:h-5 group-hover:scale-110 transition-transform" />
+              <span>Explore Courses</span>
             </a>
             <a
               href="/mentorship"
-              className="inline-block border-2 border-foreground text-foreground px-8 py-4 text-sm font-medium tracking-wide transition-all duration-300 hover:scale-105 hover:shadow-lg cursor-pointer bg-transparent hover:bg-foreground hover:text-background"
+              className="group inline-flex items-center justify-center gap-2 border-2 border-foreground text-foreground px-6 py-3 sm:px-8 sm:py-4 text-sm font-medium tracking-wide transition-all duration-300 hover:scale-105 hover:shadow-xl cursor-pointer bg-transparent hover:bg-foreground hover:text-background text-center"
             >
-              Book a Mentorship Session
+              <Users className="w-4 h-4 sm:w-5 sm:h-5 group-hover:scale-110 transition-transform" />
+              <span>Book a Mentorship Session</span>
+            </a>
+            <a
+              href="/webinars"
+              className="group relative inline-flex items-center justify-center gap-2 border-2 border-foreground text-foreground px-6 py-3 sm:px-8 sm:py-4 text-sm font-medium tracking-wide transition-all duration-300 hover:scale-105 hover:shadow-xl cursor-pointer bg-transparent hover:bg-foreground hover:text-background text-center overflow-hidden"
+            >
+              <div className="absolute top-0 right-0 w-2 h-2 bg-foreground/20 rounded-full animate-ping" />
+              <Video className="w-4 h-4 sm:w-5 sm:h-5 group-hover:scale-110 transition-transform relative z-10" />
+              <span className="relative z-10">
+                <span className="hidden sm:inline">Enroll in Our </span>
+                <span className="font-semibold">Free</span>
+                <span className="hidden sm:inline"> Webinars</span>
+                <span className="sm:hidden"> Webinars</span>
+              </span>
             </a>
           </div>
 
           {/* Stats */}
-          <div className="flex flex-wrap items-center justify-center gap-8 lg:gap-12 xl:gap-16 animate-fade-up animation-delay-800" style={{ opacity: 0 }}>
+          <div className="flex flex-wrap items-center justify-center gap-6 sm:gap-8 lg:gap-12 xl:gap-16 animate-fade-up animation-delay-800 px-4 sm:px-0" style={{ opacity: 0 }}>
             {stats.map((stat, index) => (
               <div
                 key={index}
@@ -92,10 +108,10 @@ const Hero = () => {
                   animationDelay: `${index * 0.2}s`,
                 }}
               >
-                <div className="font-display font-bold text-2xl lg:text-3xl mb-1 text-foreground group-hover:scale-105 transition-transform duration-300">
+                <div className="font-display font-bold text-xl sm:text-2xl lg:text-3xl mb-1 text-foreground group-hover:scale-105 transition-transform duration-300">
                   {stat.value}
                 </div>
-                <div className="text-xs lg:text-sm text-muted-foreground uppercase tracking-wider">
+                <div className="text-[10px] sm:text-xs lg:text-sm text-muted-foreground uppercase tracking-wider">
                   {stat.label}
                 </div>
               </div>

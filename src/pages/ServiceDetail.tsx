@@ -1,6 +1,7 @@
 import { useParams, Link } from "react-router-dom";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
+import ScrollToTopButton from "@/components/ScrollToTopButton";
 import { Card, CardContent } from "@/components/ui/card";
 import { ArrowLeft, Calendar, Clock, Star } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -419,30 +420,31 @@ const ServiceDetail = () => {
       <Navigation />
 
       {/* Service Detail Page - Split Layout */}
-      <section className="pt-32 lg:pt-40 pb-16 lg:pb-24">
-        <div className="container mx-auto px-6 lg:px-12">
-          <div className="grid grid-cols-1 lg:grid-cols-5 gap-12 lg:gap-16">
+      <section className="pt-24 sm:pt-28 md:pt-32 lg:pt-40 pb-12 sm:pb-16 lg:pb-24">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-12">
+          <div className="grid grid-cols-1 lg:grid-cols-5 gap-6 sm:gap-8 md:gap-12 lg:gap-16">
             {/* Left Column - Service Details (40%) */}
             <div className="lg:col-span-2">
               <div className="lg:sticky lg:top-24">
                 {/* Back Button and Rating Row */}
-                <div className="flex items-center justify-between mb-8">
+                <div className="flex items-center justify-between mb-4 sm:mb-6 md:mb-8">
                   <Link
                     to="/mentorship"
-                    className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors"
+                    className="inline-flex items-center gap-1.5 sm:gap-2 text-xs sm:text-sm text-muted-foreground hover:text-foreground transition-colors"
                   >
-                    <ArrowLeft className="w-4 h-4" />
-                    Back to Mentorship
+                    <ArrowLeft className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
+                    <span className="hidden sm:inline">Back to Mentorship</span>
+                    <span className="sm:hidden">Back</span>
                   </Link>
                   
                   {/* Overall Rating */}
                   {(overallRating > 0 || reviews.length > 0) && (
-                    <div className="flex items-center gap-2">
-                      <div className="flex items-center gap-1">
+                    <div className="flex items-center gap-1.5 sm:gap-2">
+                      <div className="flex items-center gap-0.5 sm:gap-1">
                         {[...Array(5)].map((_, i) => (
                           <Star
                             key={i}
-                            className={`w-4 h-4 ${
+                            className={`w-3 h-3 sm:w-4 sm:h-4 ${
                               i < Math.round(overallRating)
                                 ? "fill-foreground text-foreground"
                                 : "fill-muted text-muted-foreground"
@@ -450,12 +452,12 @@ const ServiceDetail = () => {
                           />
                         ))}
                       </div>
-                      <div className="flex items-baseline gap-1.5">
-                        <span className="font-display font-bold text-base">
+                      <div className="flex items-baseline gap-1 sm:gap-1.5">
+                        <span className="font-display font-bold text-sm sm:text-base">
                           {overallRating.toFixed(1)}
                         </span>
                         {reviews.length > 0 && (
-                          <span className="text-xs text-muted-foreground">
+                          <span className="text-[10px] sm:text-xs text-muted-foreground">
                             ({reviews.length})
                           </span>
                         )}
@@ -465,52 +467,52 @@ const ServiceDetail = () => {
                 </div>
 
                 {/* Service Title */}
-                <h1 className="font-display font-bold text-3xl lg:text-4xl tracking-tight mb-6">
+                <h1 className="font-display font-bold text-2xl sm:text-3xl lg:text-4xl tracking-tight mb-4 sm:mb-6">
                   {service.title}
                 </h1>
 
                 {/* Price and Duration */}
-                <div className="flex items-center gap-6 mb-8">
+                <div className="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-6 mb-6 sm:mb-8">
                   <div className="flex items-baseline gap-2">
-                    <span className="font-display font-bold text-3xl">
+                    <span className="font-display font-bold text-2xl sm:text-3xl">
                       ₹{service.price.toLocaleString()}
                     </span>
                     {service.originalPrice && (
-                      <span className="text-lg text-muted-foreground line-through">
+                      <span className="text-base sm:text-lg text-muted-foreground line-through">
                         ₹{service.originalPrice.toLocaleString()}
                       </span>
                     )}
                     {service.price === 0 && (
-                      <span className="text-lg text-muted-foreground">
+                      <span className="text-base sm:text-lg text-muted-foreground">
                         Contact for pricing
                       </span>
                     )}
                   </div>
                   {service.duration && (
                     <div className="flex items-center gap-2 text-muted-foreground">
-                      <Clock className="w-5 h-5" />
-                      <span>{service.duration}</span>
+                      <Clock className="w-4 h-4 sm:w-5 sm:h-5" />
+                      <span className="text-sm sm:text-base">{service.duration}</span>
                     </div>
                   )}
                 </div>
 
                 {/* Package Included Services */}
                 {service.type === "Package" && service.includedServices && service.includedServices.length > 0 && (
-                  <div className="mb-8">
-                    <h2 className="font-display font-bold text-xl mb-4">What's Included</h2>
+                  <div className="mb-6 sm:mb-8">
+                    <h2 className="font-display font-bold text-lg sm:text-xl mb-3 sm:mb-4">What's Included</h2>
                     <div className="space-y-0 border border-border rounded-lg overflow-hidden">
                       {service.includedServices.map((included, index) => (
-                        <div key={index} className="py-3 px-4 border-b border-border last:border-b-0 bg-card">
-                          <div className="flex items-start justify-between gap-4">
+                        <div key={index} className="py-2.5 sm:py-3 px-3 sm:px-4 border-b border-border last:border-b-0 bg-card">
+                          <div className="flex items-start justify-between gap-3 sm:gap-4">
                             <div className="flex-1 min-w-0">
-                              <div className="text-sm font-medium text-foreground mb-1">
+                              <div className="text-xs sm:text-sm font-medium text-foreground mb-0.5 sm:mb-1">
                                 {included.name}
                               </div>
-                              <div className="text-xs text-muted-foreground">
+                              <div className="text-[10px] sm:text-xs text-muted-foreground">
                                 {included.type}
                               </div>
                             </div>
-                            <span className="text-sm font-medium text-foreground whitespace-nowrap">
+                            <span className="text-xs sm:text-sm font-medium text-foreground whitespace-nowrap">
                               x{included.quantity}
                             </span>
                           </div>
@@ -521,35 +523,35 @@ const ServiceDetail = () => {
                 )}
 
                 {/* Description */}
-                <div className="prose prose-sm max-w-none mb-8">
-                  <p className="text-muted-foreground text-base leading-relaxed">
+                <div className="prose prose-sm max-w-none mb-6 sm:mb-8">
+                  <p className="text-muted-foreground text-sm sm:text-base leading-relaxed">
                     {service.fullDescription || service.description}
                   </p>
                 </div>
 
                 {/* Student Reviews Section */}
                 {reviews.length > 0 && (
-                  <div className="mt-8">
-                    <h2 className="font-display font-bold text-xl mb-6">Student Reviews</h2>
-                    <div className="space-y-4">
+                  <div className="mt-6 sm:mt-8">
+                    <h2 className="font-display font-bold text-lg sm:text-xl mb-4 sm:mb-6">Student Reviews</h2>
+                    <div className="space-y-3 sm:space-y-4">
                       {reviews.map((review) => (
                         <Card key={review.id} className="rounded-none border-border">
-                          <CardContent className="p-4">
-                            <div className="flex items-start gap-4">
-                              <Avatar className="h-10 w-10 rounded-none bg-muted overflow-hidden">
-                                <AvatarFallback className="bg-muted text-foreground font-medium rounded-none">
+                          <CardContent className="p-3 sm:p-4">
+                            <div className="flex items-start gap-3 sm:gap-4">
+                              <Avatar className="h-8 w-8 sm:h-10 sm:w-10 rounded-none bg-muted overflow-hidden">
+                                <AvatarFallback className="bg-muted text-foreground font-medium rounded-none text-xs sm:text-sm">
                                   {review.initials}
                                 </AvatarFallback>
                               </Avatar>
                               <div className="flex-1 min-w-0">
-                                <div className="flex items-start justify-between gap-4 mb-2">
+                                <div className="flex items-start justify-between gap-3 sm:gap-4 mb-1.5 sm:mb-2">
                                   <div>
-                                    <h3 className="font-medium text-sm mb-1">{review.name}</h3>
-                                    <div className="flex items-center gap-1">
+                                    <h3 className="font-medium text-xs sm:text-sm mb-0.5 sm:mb-1">{review.name}</h3>
+                                    <div className="flex items-center gap-0.5 sm:gap-1">
                                       {[...Array(5)].map((_, i) => (
                                         <Star
                                           key={i}
-                                          className={`w-3.5 h-3.5 ${
+                                          className={`w-3 h-3 sm:w-3.5 sm:h-3.5 ${
                                             i < review.rating
                                               ? "fill-foreground text-foreground"
                                               : "fill-muted text-muted-foreground"
@@ -558,11 +560,11 @@ const ServiceDetail = () => {
                                       ))}
                                     </div>
                                   </div>
-                                  <span className="text-xs text-muted-foreground whitespace-nowrap">
+                                  <span className="text-[10px] sm:text-xs text-muted-foreground whitespace-nowrap">
                                     {review.date}
                                   </span>
                                 </div>
-                                <p className="text-sm text-muted-foreground leading-relaxed">
+                                <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed">
                                   {review.comment}
                                 </p>
                               </div>
@@ -579,7 +581,7 @@ const ServiceDetail = () => {
             {/* Right Column - Calendly/Scheduling (60%) */}
             <div className="lg:col-span-3">
               <Card className="border-border">
-                <CardContent className="p-8">
+                <CardContent className="p-4 sm:p-6 md:p-8">
                   {service.type === "1:1 Call" || service.type === "Package" ? (
                     <>
                       <h2 className="font-display font-bold text-2xl mb-6">When should we meet?</h2>
@@ -630,6 +632,7 @@ const ServiceDetail = () => {
       </section>
 
       <Footer />
+      <ScrollToTopButton />
     </main>
   );
 };

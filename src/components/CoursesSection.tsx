@@ -112,28 +112,28 @@ const CoursesSection = () => {
   const regularCourses = filteredCourses.filter((course) => !course.featured);
 
   return (
-    <section id="courses" className="py-12 lg:py-16 bg-background">
-      <div className="container mx-auto px-6 lg:px-12">
+    <section id="courses" className="py-8 sm:py-12 lg:py-16 bg-background">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-12">
         {/* Section Header */}
         <div
           ref={headerRef}
-          className={`max-w-2xl mb-6 transition-all duration-700 ${
+          className={`max-w-2xl mb-4 sm:mb-6 transition-all duration-700 ${
             headerVisible
               ? "opacity-100 translate-y-0"
               : "opacity-0 translate-y-8"
           }`}
         >
-          <h2 className="font-display font-bold text-3xl lg:text-4xl tracking-tight mb-2">
+          <h2 className="font-display font-bold text-2xl sm:text-3xl lg:text-4xl tracking-tight mb-1.5 sm:mb-2">
             Courses
           </h2>
-          <p className="text-muted-foreground text-base lg:text-lg">
+          <p className="text-muted-foreground text-sm sm:text-base lg:text-lg">
             Skill-focused programs. Real mentors. Tangible outcomes.
           </p>
         </div>
 
         {/* Filter Buttons */}
         <div
-          className={`flex flex-wrap gap-3 mb-8 transition-all duration-700 ${
+          className={`flex flex-wrap gap-2 sm:gap-3 mb-6 sm:mb-8 transition-all duration-700 ${
             headerVisible
               ? "opacity-100 translate-y-0"
               : "opacity-0 translate-y-8"
@@ -143,21 +143,21 @@ const CoursesSection = () => {
           <Button
             variant={filter === "All" ? "default" : "outline"}
             onClick={() => setFilter("All")}
-            className="border-foreground"
+            className="border-foreground text-xs sm:text-sm px-3 py-2 sm:px-4 sm:py-2.5"
           >
             All Courses
           </Button>
           <Button
             variant={filter === "Live" ? "default" : "outline"}
             onClick={() => setFilter("Live")}
-            className="border-foreground"
+            className="border-foreground text-xs sm:text-sm px-3 py-2 sm:px-4 sm:py-2.5"
           >
             Live Now
           </Button>
           <Button
             variant={filter === "Upcoming" ? "default" : "outline"}
             onClick={() => setFilter("Upcoming")}
-            className="border-foreground"
+            className="border-foreground text-xs sm:text-sm px-3 py-2 sm:px-4 sm:py-2.5"
           >
             Upcoming
           </Button>
@@ -165,13 +165,13 @@ const CoursesSection = () => {
 
         {/* Featured Courses */}
         {featuredCourses.length > 0 && (
-          <div className="mb-8">
-            <h3 className="font-display font-semibold text-lg mb-4 text-muted-foreground uppercase tracking-wider">
+          <div className="mb-6 sm:mb-8">
+            <h3 className="font-display font-semibold text-sm sm:text-lg mb-3 sm:mb-4 text-muted-foreground uppercase tracking-wider">
               Featured
             </h3>
             <div
               ref={gridRef}
-              className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8"
+              className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6 lg:gap-8"
             >
               {featuredCourses.map((course, index) => (
                 <div
@@ -196,11 +196,11 @@ const CoursesSection = () => {
         {regularCourses.length > 0 && (
           <div>
             {featuredCourses.length > 0 && (
-              <h3 className="font-display font-semibold text-lg mb-4 text-muted-foreground uppercase tracking-wider">
+              <h3 className="font-display font-semibold text-sm sm:text-lg mb-3 sm:mb-4 text-muted-foreground uppercase tracking-wider">
                 All Courses
               </h3>
             )}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 lg:gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 lg:gap-6">
               {regularCourses.map((course, index) => (
                 <div
                   key={course.id}

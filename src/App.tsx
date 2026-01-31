@@ -4,12 +4,14 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { ThemeProvider } from "next-themes";
+import ScrollToTop from "./components/ScrollToTop";
 import Index from "./pages/Index";
 import CourseDetail from "./pages/CourseDetail";
 import Mentorship from "./pages/Mentorship";
 import ServiceDetail from "./pages/ServiceDetail";
 import Blogs from "./pages/Blogs";
 import BlogDetail from "./pages/BlogDetail";
+import Webinars from "./pages/Webinars";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -20,12 +22,14 @@ const App = () => (
       <TooltipProvider>
         <Toaster />
         <Sonner />
-        <BrowserRouter>
+        <BrowserRouter future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
+          <ScrollToTop />
           <Routes>
             <Route path="/" element={<Index />} />
             <Route path="/course/:courseId" element={<CourseDetail />} />
             <Route path="/mentorship" element={<Mentorship />} />
             <Route path="/mentorship/service/:serviceId" element={<ServiceDetail />} />
+            <Route path="/webinars" element={<Webinars />} />
             <Route path="/blogs" element={<Blogs />} />
             <Route path="/blogs/:blogId" element={<BlogDetail />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}

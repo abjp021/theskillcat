@@ -1,5 +1,6 @@
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
+import ScrollToTopButton from "@/components/ScrollToTopButton";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Link } from "react-router-dom";
@@ -30,16 +31,23 @@ const Blogs = () => {
     <main className="min-h-screen bg-background">
       <Navigation />
 
-      <section className="pt-28 lg:pt-32 pb-16 lg:pb-20 border-b border-border">
-        <div className="container mx-auto px-6 lg:px-12">
-          <div className="max-w-3xl">
-            <p className="text-xs font-medium uppercase tracking-[0.2em] text-muted-foreground mb-3">
-              Blog
-            </p>
-            <h1 className="font-display font-bold text-3xl sm:text-4xl lg:text-5xl tracking-tight mb-4">
+      <section className="pt-6 sm:pt-8 lg:pt-10 pb-4 sm:pb-6 lg:pb-8 border-b border-border relative overflow-hidden">
+        {/* Decorative background elements */}
+        <div className="absolute top-0 right-0 w-96 h-96 bg-foreground/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" />
+        <div className="absolute bottom-0 left-0 w-64 h-64 bg-foreground/5 rounded-full blur-2xl translate-y-1/2 -translate-x-1/2" />
+        
+        <div className="container mx-auto px-4 sm:px-6 lg:px-12 relative z-10">
+          <div className="max-w-4xl">
+            <div className="inline-flex items-center gap-2 mb-3">
+              <div className="w-1 h-6 bg-foreground" />
+              <p className="text-[10px] sm:text-xs font-medium uppercase tracking-[0.2em] text-muted-foreground">
+                Blog
+              </p>
+            </div>
+            <h1 className="font-display font-bold text-3xl sm:text-4xl md:text-5xl lg:text-6xl tracking-tight mb-4 sm:mb-5">
               Articles to Help You Navigate Your Career
             </h1>
-            <p className="text-sm sm:text-base text-muted-foreground max-w-2xl">
+            <p className="text-sm sm:text-base md:text-lg text-muted-foreground max-w-2xl leading-relaxed">
               Deep dives, playbooks, and honest lessons from building products, mentoring professionals, and
               navigating messy real-world careers.
             </p>
@@ -47,30 +55,35 @@ const Blogs = () => {
         </div>
       </section>
 
-      <section className="py-12 lg:py-16">
-        <div className="container mx-auto px-6 lg:px-12">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {blogs.map((blog) => (
+      <section className="py-6 sm:py-8 lg:py-10">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-12">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5 lg:gap-6">
+            {blogs.map((blog, index) => (
               <Link key={blog.id} to={`/blogs/${blog.id}`}>
-                <Card className="h-full border-border hover:border-foreground/60 hover:shadow-lg transition-all duration-200 group">
-                  <CardHeader className="pb-3">
-                    <div className="flex items-center justify-between gap-2 mb-2">
-                      <Badge variant="outline" className="text-[11px]">
+                <Card className="h-full border-border/50 hover:border-foreground/60 hover:shadow-xl transition-all duration-300 group overflow-hidden relative bg-card">
+                  {/* Decorative accent */}
+                  <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-foreground/20 via-foreground/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+                  
+                  <CardHeader className="pb-3 p-5">
+                    <div className="flex items-center justify-between gap-2 mb-3">
+                      <Badge variant="outline" className="text-[11px] border-foreground/20 group-hover:border-foreground/40 transition-colors">
                         {blog.tag}
                       </Badge>
                       <span className="text-[11px] text-muted-foreground">{blog.date}</span>
                     </div>
-                    <CardTitle className="text-base sm:text-lg group-hover:text-foreground">
+                    <CardTitle className="text-lg sm:text-xl group-hover:text-foreground transition-colors leading-tight mb-2">
                       {blog.title}
                     </CardTitle>
                   </CardHeader>
-                  <CardContent>
-                    <p className="text-sm text-muted-foreground mb-3 line-clamp-3">
+                  <CardContent className="p-5 pt-0">
+                    <p className="text-sm text-muted-foreground mb-4 line-clamp-3 leading-relaxed">
                       {blog.excerpt}
                     </p>
-                    <span className="text-[11px] font-medium text-muted-foreground">
-                      {blog.readTime} • Click to read
-                    </span>
+                    <div className="flex items-center gap-2 text-[11px] font-medium text-muted-foreground group-hover:text-foreground transition-colors">
+                      <span>{blog.readTime}</span>
+                      <span>•</span>
+                      <span className="underline underline-offset-2">Read article</span>
+                    </div>
                   </CardContent>
                 </Card>
               </Link>
@@ -80,6 +93,7 @@ const Blogs = () => {
       </section>
 
       <Footer />
+      <ScrollToTopButton />
     </main>
   );
 };

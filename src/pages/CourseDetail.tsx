@@ -1,6 +1,7 @@
 import { useParams, Link } from "react-router-dom";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
+import ScrollToTopButton from "@/components/ScrollToTopButton";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -16,6 +17,7 @@ import {
   Award,
   TrendingUp,
   ArrowRight,
+  ArrowLeft,
   Linkedin,
   Twitter,
 } from "lucide-react";
@@ -846,13 +848,14 @@ const CourseDetail = () => {
     return (
       <main className="min-h-screen bg-background">
         <Navigation />
-        <div className="pt-32 pb-20 text-center">
-          <h1 className="font-display font-bold text-3xl mb-4">Course Not Found</h1>
+        <div className="pt-24 sm:pt-28 md:pt-32 pb-12 sm:pb-16 md:pb-20 text-center px-4">
+          <h1 className="font-display font-bold text-2xl sm:text-3xl mb-3 sm:mb-4">Course Not Found</h1>
           <Link to="/" className="link-underline">
             Back to Home
           </Link>
         </div>
         <Footer />
+        <ScrollToTopButton />
       </main>
     );
   }
@@ -868,11 +871,23 @@ const CourseDetail = () => {
       <Navigation />
 
       {/* Hero Section */}
-      <section className="pt-32 lg:pt-40 pb-16 lg:pb-24 border-b border-border">
-        <div className="container mx-auto px-6 lg:px-12">
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
+      <section className="pt-6 sm:pt-8 lg:pt-10 pb-12 sm:pb-16 lg:pb-24 border-b border-border">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-12">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 sm:gap-8 md:gap-12">
             {/* Main Content */}
             <div className="lg:col-span-2">
+              {/* Back Button */}
+              <div className="mb-4 sm:mb-6">
+                <Link
+                  to="/#courses"
+                  className="inline-flex items-center gap-1.5 sm:gap-2 text-xs sm:text-sm text-muted-foreground hover:text-foreground transition-colors"
+                >
+                  <ArrowLeft className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
+                  <span className="hidden sm:inline">Back to Courses</span>
+                  <span className="sm:hidden">Back</span>
+                </Link>
+              </div>
+
               {/* Status Badge */}
               <Badge
                 variant="outline"
@@ -886,17 +901,17 @@ const CourseDetail = () => {
               </Badge>
 
               {/* Title */}
-              <h1 className="font-display font-bold text-3xl sm:text-4xl lg:text-5xl tracking-tight mb-6">
+              <h1 className="font-display font-bold text-2xl sm:text-3xl md:text-4xl lg:text-5xl tracking-tight mb-4 sm:mb-6">
                 {course.title}
               </h1>
 
               {/* Promise */}
-              <p className="text-lg lg:text-xl text-muted-foreground mb-8">
+              <p className="text-base sm:text-lg lg:text-xl text-muted-foreground mb-6 sm:mb-8">
                 {course.promise}
               </p>
 
               {/* Course Stats */}
-              <div className="flex flex-wrap gap-6 mb-8">
+              <div className="flex flex-wrap gap-4 sm:gap-6 mb-6 sm:mb-8">
                 {course.rating > 0 && (
                   <div className="flex items-center gap-2">
                     <Star className="w-5 h-5 fill-foreground text-foreground" />
@@ -913,12 +928,66 @@ const CourseDetail = () => {
               </div>
 
               {/* Skills Tags */}
-              <div className="flex flex-wrap gap-2 mb-10">
+              <div className="flex flex-wrap gap-1.5 sm:gap-2 mb-6 sm:mb-8">
                 {course.skills.map((skill, index) => (
                   <Badge key={index} variant="secondary">
                     {skill}
                   </Badge>
                 ))}
+              </div>
+
+              {/* Curriculum Section - Moved here */}
+              <div className="mt-6 sm:mt-8 lg:mt-10">
+                <div className="mb-4 sm:mb-6 lg:mb-8">
+                  <h2 className="font-display font-bold text-xl sm:text-2xl lg:text-3xl tracking-tight mb-1 sm:mb-1.5 lg:mb-2">
+                    Curriculum
+                  </h2>
+                  <p className="text-muted-foreground text-xs sm:text-sm lg:text-base">
+                    {course.curriculum.length} weeks of structured learning
+                  </p>
+                </div>
+                <Tabs defaultValue={`week-${course.curriculum[0]?.week || 1}`} className="w-full">
+                  {/* Mobile-optimized tabs with scroll indicator */}
+                  <div className="relative mb-4 sm:mb-6 lg:mb-8">
+                    <div className="overflow-x-auto scrollbar-hide -mx-4 px-4 sm:-mx-6 sm:px-6 lg:mx-0 lg:px-0">
+                      <TabsList className="inline-flex h-auto p-1 w-max lg:w-auto min-w-max lg:min-w-0 gap-1">
+                        {course.curriculum.map((week, index) => (
+                          <TabsTrigger
+                            key={index}
+                            value={`week-${week.week}`}
+                            className="whitespace-nowrap px-3 py-2 sm:px-4 text-xs sm:text-sm data-[state=active]:bg-background data-[state=active]:shadow-sm flex-shrink-0"
+                          >
+                            Week {week.week}
+                          </TabsTrigger>
+                        ))}
+                      </TabsList>
+                    </div>
+                    {/* Scroll indicator gradient for mobile */}
+                    <div className="absolute right-0 top-0 bottom-0 w-8 bg-gradient-to-l from-background to-transparent pointer-events-none lg:hidden" />
+                  </div>
+                  <div className="min-h-[300px] sm:min-h-[350px]">
+                    {course.curriculum.map((week, index) => (
+                      <TabsContent key={index} value={`week-${week.week}`} className="mt-0">
+                        <div className="space-y-3 sm:space-y-4">
+                          <div className="pb-2 sm:pb-3 border-b border-border/50">
+                            <h3 className="font-display font-semibold text-base sm:text-lg lg:text-xl leading-tight">
+                              <span className="text-muted-foreground">Week {week.week}:</span>{" "}
+                              <span className="text-foreground">{week.title}</span>
+                            </h3>
+                          </div>
+                          <ul className="space-y-2.5 sm:space-y-3">
+                            {week.topics.map((topic, topicIndex) => (
+                              <li key={topicIndex} className="flex items-start gap-2.5 sm:gap-3 group">
+                                <CheckCircle2 className="w-4 h-4 sm:w-5 sm:h-5 text-foreground mt-0.5 flex-shrink-0 group-hover:scale-110 transition-transform" />
+                                <span className="text-muted-foreground text-sm sm:text-base leading-relaxed flex-1">{topic}</span>
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                      </TabsContent>
+                    ))}
+                  </div>
+                </Tabs>
               </div>
             </div>
 
@@ -975,83 +1044,13 @@ const CourseDetail = () => {
         </div>
       </section>
 
-      {/* Curriculum Section */}
-      <section className="py-16 lg:py-24 border-b border-border">
-        <div className="container mx-auto px-6 lg:px-12">
-          <div className="max-w-5xl">
-            <div className="mb-12">
-              <h2 className="font-display font-bold text-3xl tracking-tight mb-2">
-                Curriculum
-              </h2>
-              <p className="text-muted-foreground">
-                {course.curriculum.length} weeks of structured learning
-              </p>
-            </div>
-            <Tabs defaultValue={`week-${course.curriculum[0]?.week || 1}`} className="w-full">
-              <div className="overflow-x-auto mb-8 -mx-6 px-6 lg:mx-0 lg:px-0">
-                <TabsList className="inline-flex h-auto p-1 w-full lg:w-auto min-w-full lg:min-w-0">
-                  {course.curriculum.map((week, index) => (
-                    <TabsTrigger
-                      key={index}
-                      value={`week-${week.week}`}
-                      className="whitespace-nowrap px-4 py-2 text-sm data-[state=active]:bg-background"
-                    >
-                      Week {week.week}
-                    </TabsTrigger>
-                  ))}
-                </TabsList>
-              </div>
-              {course.curriculum.map((week, index) => (
-                <TabsContent
-                  key={index}
-                  value={`week-${week.week}`}
-                  className="mt-6"
-                >
-                  <Card className="border-border">
-                    <CardHeader>
-                      <div className="flex items-center gap-3 mb-2">
-                        <div className="w-10 h-10 rounded-full bg-foreground text-background flex items-center justify-center font-display font-bold text-sm">
-                          {week.week}
-                        </div>
-                        <CardTitle className="text-2xl">{week.title}</CardTitle>
-                      </div>
-                    </CardHeader>
-                    <CardContent>
-                      <div className="space-y-4">
-                        <div>
-                          <h4 className="font-semibold text-sm mb-3 text-muted-foreground uppercase tracking-wider">
-                            Topics Covered
-                          </h4>
-                          <ul className="space-y-3">
-                            {week.topics.map((topic, topicIndex) => (
-                              <li
-                                key={topicIndex}
-                                className="flex items-start gap-3"
-                              >
-                                <CheckCircle2 className="w-5 h-5 text-foreground mt-0.5 flex-shrink-0" />
-                                <span className="text-base text-muted-foreground">
-                                  {topic}
-                                </span>
-                              </li>
-                            ))}
-                          </ul>
-                        </div>
-                      </div>
-                    </CardContent>
-                  </Card>
-                </TabsContent>
-              ))}
-            </Tabs>
-          </div>
-        </div>
-      </section>
 
       {/* What You'll Gain */}
       <section className="py-16 lg:py-24 border-b border-border">
         <div className="container mx-auto px-6 lg:px-12">
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
             <div>
-              <h2 className="font-display font-bold text-2xl lg:text-3xl tracking-tight mb-2">
+              <h2 className="font-display font-bold text-xl sm:text-2xl lg:text-3xl tracking-tight mb-1.5 sm:mb-2">
                 What you'll gain
               </h2>
               <p className="text-muted-foreground">
@@ -1059,7 +1058,7 @@ const CourseDetail = () => {
               </p>
             </div>
             <div className="lg:col-span-2">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
                 {course.gains.map((gain, index) => (
                   <div
                     key={index}
@@ -1082,7 +1081,7 @@ const CourseDetail = () => {
         <div className="container mx-auto px-6 lg:px-12">
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
             <div>
-              <h2 className="font-display font-bold text-2xl lg:text-3xl tracking-tight mb-2">
+              <h2 className="font-display font-bold text-xl sm:text-2xl lg:text-3xl tracking-tight mb-1.5 sm:mb-2">
                 Who it's for
               </h2>
               <p className="text-muted-foreground">
@@ -1176,7 +1175,7 @@ const CourseDetail = () => {
         <section className="py-16 lg:py-24 border-b border-border">
           <div className="container mx-auto px-6 lg:px-12">
             <div className="mb-12">
-              <h2 className="font-display font-bold text-2xl lg:text-3xl tracking-tight mb-2">
+              <h2 className="font-display font-bold text-xl sm:text-2xl lg:text-3xl tracking-tight mb-1.5 sm:mb-2">
                 Student Reviews
               </h2>
               <p className="text-muted-foreground">
@@ -1224,7 +1223,7 @@ const CourseDetail = () => {
         <section className="py-16 lg:py-24">
           <div className="container mx-auto px-6 lg:px-12">
             <div className="mb-12">
-              <h2 className="font-display font-bold text-2xl lg:text-3xl tracking-tight mb-2">
+              <h2 className="font-display font-bold text-xl sm:text-2xl lg:text-3xl tracking-tight mb-1.5 sm:mb-2">
                 Related Courses
               </h2>
               <p className="text-muted-foreground">
@@ -1278,6 +1277,7 @@ const CourseDetail = () => {
       )}
 
       <Footer />
+      <ScrollToTopButton />
     </main>
   );
 };

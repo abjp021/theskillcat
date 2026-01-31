@@ -8,6 +8,7 @@ import BlogsSection from "@/components/BlogsSection";
 import NewsletterSection from "@/components/NewsletterSection";
 import FAQSection from "@/components/FAQSection";
 import Footer from "@/components/Footer";
+import ScrollToTopButton from "@/components/ScrollToTopButton";
 
 const Index = () => {
   return (
@@ -22,6 +23,7 @@ const Index = () => {
       <NewsletterSection />
       <FAQSection />
       <Footer />
+      <ScrollToTopButton />
     </main>
   );
 };

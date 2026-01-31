@@ -25,17 +25,17 @@ const sampleBlogs = [
 
 const BlogsSection = () => {
   return (
-    <section id="blogs" className="py-12 lg:py-20 border-t border-border bg-muted/10">
-      <div className="container mx-auto px-6 lg:px-12">
-        <div className="flex items-center justify-between gap-4 mb-10">
+    <section id="blogs" className="py-8 sm:py-12 lg:py-20 border-t border-border bg-muted/10">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-12">
+        <div className="flex items-center justify-between gap-4 mb-6 sm:mb-8 md:mb-10">
           <div>
-            <p className="text-xs font-medium uppercase tracking-[0.2em] text-muted-foreground mb-2">
+            <p className="text-[10px] sm:text-xs font-medium uppercase tracking-[0.2em] text-muted-foreground mb-1.5 sm:mb-2">
               Insights & Stories
             </p>
-            <h2 className="font-display font-bold text-2xl sm:text-3xl lg:text-4xl tracking-tight">
+            <h2 className="font-display font-bold text-xl sm:text-2xl md:text-3xl lg:text-4xl tracking-tight">
               Blogs for Early & Mid-Career Professionals
             </h2>
-            <p className="text-sm sm:text-base text-muted-foreground mt-2 max-w-2xl">
+            <p className="text-xs sm:text-sm md:text-base text-muted-foreground mt-1.5 sm:mt-2 max-w-2xl">
               Short, practical pieces on careers, skills, and interviews- written from real industry experience.
             </p>
           </div>
@@ -47,7 +47,7 @@ const BlogsSection = () => {
           </Link>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
           {sampleBlogs.map((blog) => (
             <Link key={blog.id} to={`/blogs/${blog.id}`}>
               <Card className="h-full border-border hover:border-foreground/60 hover:shadow-lg transition-all duration-200 group">
